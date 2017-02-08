@@ -1,0 +1,65 @@
+/* Normal desktop :992px. */
+@media (min-width: 992px){
+
+	.main-menu ul li a:hover,
+	.main-menu ul li a:focus { background: transparent; }
+}
+
+ 
+/* Tablet desktop :768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+	.intro-div h1 { font-size: 50px; }
+
+	.main-menu ul li a:hover,
+	.main-menu ul li a:focus { background: transparent; }
+
+	.main-menu ul li a{ padding: 15px 10px;}
+
+}
+ 
+/* Large Mobile :480px. */
+@media only screen and (max-width: 767px) {
+
+	.intro-div h1 { font-size: 35px; }
+
+	.main-menu ul li a::after,
+	.main-menu ul li a::before { display: none; } 
+
+	.main-menu ul li a:hover,
+	.main-menu ul li a:focus,
+	.main-menu ul li.active a{
+		background: #000;
+		color: #ffc107;
+	}
+
+
+	.main-menu ul li a{ background: #000;}
+
+	.navbar-header .navbar-toggle .icon-bar { background: none repeat scroll 0 0 #fff; }
+
+	.resumes li:after { display: none; }
+
+}
+
+/* small mobile :320px. */
+@media only screen and (max-width: 479px) {
+
+	.intro-div h1 { font-size: 21px; }
+
+	.main-menu ul li a::after,
+	.main-menu ul li a::before { display: none; }
+
+	.main-menu ul li a:hover,
+	.main-menu ul li a:focus,
+	.main-menu ul li.active a{
+		background: #000;
+		color: #ffc107;
+	}
+
+	.navbar-header .navbar-toggle .icon-bar { background: none repeat scroll 0 0 #fff; }
+
+	.resumes li:after { display: none; }
+
+}
+

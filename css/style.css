@@ -1,0 +1,230 @@
+/* ===================================
+   01. 初始化
+====================================== */
+* { padding: 0; margin: 0; outline: none; }
+html, body { height: 100%; margin: 0; padding: 0; }
+body { font-family: 'Microsoft YaHei'; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; margin: 0; }
+h1 { color: #333; letter-spacing: 0.03em; font-size: 65px; }
+h2 { font-size: 30px; color: #282828; letter-spacing: 0.1em; margin-bottom: 15px; }
+h3 { color: #282828; font-size: 30px; letter-spacing: 0.03em; line-height: 24px; }
+h4 { font-size: 14px; color: #282828; letter-spacing: 0.06em; line-height: 24px; text-transform: uppercase; }
+h5 { font-size: 12px; color: #333; letter-spacing: 0.05em; }
+p { font-size: 17px; line-height: 35px; letter-spacing: 0.03em; margin-bottom: 0; color: #666; }
+span { font-weight: 700; }
+a { color: #ffc107 }
+a:hover, a:focus { text-decoration: none; outline: none; color: #ecb118; }
+ul, ol { margin: 0; padding: 0; list-style: none }
+/* ===================================
+    02. 载入动画
+====================================== */
+#loader { position: fixed; width: 100%; height: 100%; left: 0; top: 0; background: #333; z-index: 99999; }
+.loader-text { position: absolute; left: 50%; top: 50%; margin-left: -25px; margin-top: 25px; color: #fff }
+#loaderInner { display: block; margin: 0 auto; width: 41px; height: 41px; top: 50%; margin-top: -20px; position: relative; border: 6px solid #ffc107; animation: loader 2.3s infinite ease; -webkit-animation: loader 2.3s infinite ease; }
+.loader-inner-animation { vertical-align: top; display: inline-block; width: 100%; background-color: #ffc107; animation: loader-inner 2.3s infinite ease-in; -webkit-animation: loader-inner 2.3s infinite ease-in; }
+ @keyframes loader {
+ 0% {
+ transform: rotate(0deg);
+ -webkit-transform: rotate(0deg);
+}
+ 25% {
+ transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+}
+ 50% {
+ transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+}
+ 75% {
+ transform: rotate(360deg);
+ -webkit-transform: rotate(360deg);
+}
+ 100% {
+ transform: rotate(360deg);
+ -webkit-transform: rotate(360deg);
+}
+}
+ @-webkit-keyframes loader {
+ 0% {
+ transform: rotate(0deg);
+ -webkit-transform: rotate(0deg);
+}
+ 25% {
+ transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+}
+ 50% {
+ transform: rotate(180deg);
+ -webkit-transform: rotate(180deg);
+}
+ 75% {
+ transform: rotate(360deg);
+ -webkit-transform: rotate(360deg);
+}
+ 100% {
+ transform: rotate(360deg);
+ -webkit-transform: rotate(360deg);
+}
+}
+ @keyframes loader-inner {
+ 0% {
+ height: 0%;
+}
+ 25% {
+ height: 0%;
+}
+ 50% {
+ height: 100%;
+}
+ 75% {
+ height: 100%;
+}
+ 100% {
+ height: 0%;
+}
+}
+ @-webkit-keyframes loader-inner {
+ 0% {
+ height: 0%;
+}
+ 25% {
+ height: 0%;
+}
+ 50% {
+ height: 100%;
+}
+ 75% {
+ height: 100%;
+}
+ 100% {
+ height: 0%;
+}
+}
+[class*="-area"], .fix { overflow: hidden; }
+.no-padding { padding-left: 0; padding-right: 0; }
+.dtable { position: absolute; display: table; height: 100%; width: 100%; top: 0; z-index: 3 }
+.dtable-cell { display: table-cell; vertical-align: middle; text-align: center; }
+.spad { padding: 70px 0; }
+.section-title { margin-bottom: 50px; }
+.section-title h2 { margin-bottom: 0; padding-bottom: 10px; position: relative; text-transform: uppercase; font-weight: 400; }
+.section-title h2:after { position: absolute; content: ""; width: 80px; height: 2px; left: 0; bottom: 0; background: #ffc107; }
+.site-btn { display: inline-block; padding: 7px 15px; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 0.09em; border-radius: 2px; border: 1px solid; border-color: transparent; box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); -webkit-transition: all 0.5s; transition: all 0.5s; }
+.loadmore { background: #ffc107; color: #fff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
+.loadmore:hover, .loadmore:focus { color: #fff; background: #333; }
+/* ===================================
+    03 . 头部 
+====================================== */
+.header-area { background: url(img/bg.jpg); -webkit-background-size: cover; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; height: 100%; position: relative; }
+.header-area:after { position: absolute; content: ""; width: 100%; height: 100%; left: 0; top: 0; background: url(img/overlay.png); background-repeat: repeat; background-color: rgba(0, 0, 0, 0.72); }
+.logo { padding: 5px 15px; line-height: 40px; }
+.fixed-header .main-menu { background: #000; position: fixed; width: 100%; left: 0; top: 0; padding: 5px 0; }
+.main-menu { position: relative; padding: 15px 0; left: 0; top: 0; border-radius: 0; border: 0; z-index: 999; -webkit-transition: all 0.5s; transition: all 0.5s; overflow: hidden; }
+.main-menu ul li a { color: #fff; text-transform: uppercase; /*font-weight: 700; */}
+.main-menu ul li a::after, .main-menu ul li a::before { content: ""; position: absolute; height: 100%; left: 0; background: #ffc107; width: 100%; -webkit-transition: all 0.4s; transition: all 0.4s; opacity: 0; }
+.main-menu ul li a::after { bottom: 0; -webkit-transform: scaleY(0.9) rotate(20deg); transform: scaleY(0.9) rotate(20deg); }
+.main-menu ul li a:hover:after, .fixed-header .main-menu ul li.active a:after { opacity: 1; -webkit-transform: scaleY(1) rotate(0deg); transform: scaleY(1) rotate(0deg); height: 3px; }
+.main-menu ul li a::before { top: 0; -webkit-transform: scaleY(0.9) rotate(-20deg); transform: scaleY(0.9) rotate(-20deg); }
+.main-menu ul li a:hover:before, .fixed-header .main-menu ul li.active a:before { opacity: 1; -webkit-transform: scaleY(1) rotate(0deg); transform: scaleY(1) rotate(0deg); height: 3px; }
+.intro-div { display: inline-block; position: relative; z-index: 3 }
+.profile-pic { position: relative; width: 190px; height: 190px; border-radius: 50%; overflow: hidden; margin: 0 auto; margin-bottom: 25px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.55); }
+.profile-pic img { max-width: 100%; max-height: 100%; }
+.profile-pic:after { position: absolute; content: ""; width: 100%; height: 100%; border: 10px solid #fff; left: 0; top: 0px; border-radius: 50%; }
+.intro-div h1 { color: #fff; margin-top: 15px; text-transform: uppercase; }
+.intro-div h1 b { color: #ffc107 }
+#typed-strings { display: none; }
+/* ===================================
+    04. 基本资料
+====================================== */
+.progress-area .single-progress-item:last-child { margin-bottom: 0; }
+.single-progress-item { margin-bottom: 25px; }
+.single-progress-item p { letter-spacing: 0.09em; text-transform: uppercase; color: #282828; font-size: 14px; margin-bottom: 0; font-weight: 700; }
+.progress-bar-style { display: block; height: 8px; position: relative; width: 100%; }
+.bar-inner { position: absolute; height: 100%; left: 0; top: 0; background: #ffc107; }
+.bar-inner span { position: absolute; background: #fff; height: 23px; width: 23px; top: -8px; right: 0; border: 5px solid #ffc107; box-shadow: 0 1px 10px #999; border-radius: 50%; }
+/* ===================================
+    05. 相关技能
+====================================== */
+.services-area { background: #f8f8f8; }
+.service { text-align: center; }
+.service-icon { width: 70px; height: 70px; margin: 0px auto 10px; background: #ffc107; font-size: 30px; border-radius: 50%; color: #fff; display: table; position: relative; -webkit-transition: all 0.5s; transition: all 0.5s; box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
+.service-icon:after { position: absolute; content: ""; width: 100%; height: 100%; border: 3px #fff; border-style: solid; left: 0; top: 0px; border-radius: 50%; -webkit-animation: circle linear 5s infinite; animation: circle linear 5s infinite; }
+@-webkit-keyframes circle {
+ 0% {
+ -webkit-transform: rotate(0deg);
+ transform: rotate(0deg);
+}
+ 50% {
+ -webkit-transform: rotate(180deg);
+ transform: rotate(180deg);
+}
+ 100% {
+ -webkit-transform: rotate(360deg);
+ transform: rotate(360deg);
+}
+}
+@keyframes circle {
+ 0% {
+ -webkit-transform: rotate(0deg);
+ transform: rotate(0deg);
+}
+ 50% {
+ -webkit-transform: rotate(180deg);
+ transform: rotate(180deg);
+}
+ 100% {
+ -webkit-transform: rotate(360deg);
+ transform: rotate(360deg);
+}
+}
+.service:hover .service-icon { background-color: #fff; color: #ffc107; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+.service:hover .service-icon:after { border: 3px #ffc107; border-style: dashed; }
+.service-icon i { display: table-cell; vertical-align: middle; margin: 0; padding: 0; }
+/* ===================================
+    06. 工作经历
+====================================== */
+.resumes li { border-left: 5px solid #ffc107; box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); margin-bottom: 35px; padding: 20px; overflow: hidden; position: relative; }
+.resumes li:last-child { margin-bottom: 0; }
+.resumes li:after { position: absolute; content: "\f0b1"; font-family: "FontAwesome"; left: -20px; bottom: -30%; font-size: 100px; color: #f7f7f7; -webkit-transition: all 0.5s; transition: all 0.5s; z-index: -1 }
+.resumes li:hover:after { left: -10px; bottom: -25%; }
+.resumes li:before, .con-info li:before { position: absolute; content: ""; width: 5px; height: 40px; right: 0; top: 50%; margin-top: -20px; background: #ffc107; }
+.resume-date { margin-bottom: 15px; }
+.resume-date h4 { font-size: 16px; margin-bottom: 5px; }
+.resume-date h5 { font-size: 13px; color: #ffc107; }
+.resumes li h2 { font-size: 20px; text-transform: uppercase; }
+.resume-text p { margin: 0; }
+/* ===================================
+    07. 部分作品
+====================================== */
+.portfolio-area { overflow: hidden; background: #f8f8f8; }
+.grid-item { margin-bottom: 30px; position: relative; /*float: none;*/ }
+.portfolio-filter { margin-bottom: 20px; }
+.portfolio-filter li { display: inline-block; padding: 5px 10px; margin-bottom: 10px; margin-right: 5px; font-size: 13px; font-weight: 700; text-transform: uppercase; -webkit-transition: all 0.5s; transition: all 0.5s; cursor: pointer; }
+.portfolio-filter li.active { background: #ffc107; color: #fff; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.55); box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.34); }
+.work-item { overflow: hidden; display: block; position: relative; /*border: 1px solid #e0e0e0;*/ }
+.work-item img { -webkit-transform: scale(1); transform: scale(1); -webkit-transition: all 0.4s; transition: all 0.4s; width: 100%; }
+.work-inner { position: absolute; width: 100%; height: 100%; left: 0; top: 0; padding: 10px; background: rgba(0, 0, 0, 0.8); opacity: 0; -webkit-perspective: 500px; perspective: 500px; -webkit-transition: all 0.3s; transition: all 0.3s; }
+.work-inner h3 { font-size: 20px; text-transform: uppercase; position: absolute; bottom: 40px; letter-spacing: 0.09em; color: #fff; -webkit-transform: rotateX(110deg); transform: rotateX(110deg); -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transition: all 0.3s; transition: all 0.3s; }
+.work-inner h5 { position: absolute; bottom: 10px; background: #ffc107; padding: 5px 10px; -webkit-transform: rotateX(110deg); transform: rotateX(110deg); -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transition: all 0.3s; transition: all 0.3s; }
+.work-item:hover img { -webkit-transform: scale(1.9); transform: scale(1.9); }
+.work-item:hover .work-inner { opacity: 1; }
+.work-item:hover .work-inner h3, .work-item:hover .work-inner h5 { -webkit-transform: rotateX(0deg); transform: rotateX(0deg); -webkit-transition: all 0.7s; transition: all 0.7s; }
+.work-popup { max-width: 550px; background: #fff; position: relative!important; margin: 30px auto; left: 0!important; }
+.work-popup img { width: 100%; height: 100%; }
+.work-popup-content { padding: 25px; }
+.work-popup-content h3 { font-size: 26px; text-transform: uppercase; margin-bottom: 20px; }
+.work-popup-content p { text-align: left; line-height: 23px; }
+.mfp-close-btn-in .mfp-close { position: absolute; background: #fff; font-size: 40px; width: 50px; height: 50px; opacity: 1; color: #ffc107; box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2); }
+
+/* ===================================
+    08. 联系我
+====================================== */
+.contact-area { background: #fff; }
+.con-info li { box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); margin-bottom: 20px; padding:25px 20px; padding-left: 50px; position: relative; margin-left: 20px; }
+.con-info li i { position: absolute; width: 40px; height: 40px; text-align: center; font-size: 20px; padding-top: 8px; left: -20px; top: 50%; margin-top: -20px; border: 1px solid; border-color: #ffc107; color: #ffc107; border-radius: 50%; background: #f8f8f8; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+.con-info li p { margin-bottom: 0; }
+
+/* ===================================
+    09. 页脚
+====================================== */
+.footer-area { background: #333; padding: 40px 0; text-align: center; }
+.footer-area p { margin-bottom: 0; }
