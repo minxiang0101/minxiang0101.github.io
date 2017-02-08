@@ -43,19 +43,6 @@ $(function(){
 		}
 	});//介绍技能
 	
-	 $(window).on('load',function() { 
-	    var grid_container = $('.portfolio-container'),
-	    	grid_item = $('.grid-item');
-	    	
-
-	     grid_container.imagesLoaded(function () {
-	        grid_container.isotope({
-	            itemSelector: '.grid-item',
-	       		layoutMode: 'masonry'
-	        });
-	    });
-
-	});
 })
 
 
