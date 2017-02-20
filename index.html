@@ -3,18 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>设计导航</title>
-<link rel="stylesheet" href="sjdh/css/style-min.css" />
+<link rel="stylesheet" href="sjdh/css/main.css" />
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!--[if lt IE9]> 
+<script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
 <!--head-->
 <div class="header clearfix">
   <div class="logo-bg"> <span class="expand fa fa-bars"></span>
-    <h1 class="logo"><a href="index.html"><img src="sjdh/images/logo.png" height="30" alt="设计导航" /></a></h1>
-    <ul class="top-menu">
+    <h1 class="logo"><a href="index.html">设计导航</a></h1>
+    <!--<ul class="top-menu">
       <li class="active"> <a href="#nogo"><i class="fa fa-send-o"></i><span>Web/UI</span></a> </li>
-    </ul>
+    </ul>-->
   </div>
 </div>
 <!--head end-->
@@ -23,19 +26,18 @@
   <div class="left-side">
     <div class="side-content">
       <ul class="left-nav nav">
-        <li> <a href="#top-links"><i class="fa fa-bookmark-o" style="font-size:15px;margin:0 6px 0 6px"></i>常用</a> </li>  
-        <li> <a href="#developer"><i class="fa fa-bug" style="margin:0 7px 0 5px;font-size:15px"></i>前端开发</a> </li>
+        <li> <a href="#top-links"><i class="fa fa-bookmark-o" style=" margin: 0 12px 0 3px;"></i>常用</a> </li>  
+        <li> <a href="#developer"><i class="fa fa-bug" ></i>前端开发</a> </li>
         <li> <a href="#infographic"><i class="fa fa-envira"></i>常用组件/插件</a> </li>
         <li> <a href="#frame"><i class="fa fa-gg"></i>框架/库</a> </li>
         <li> <a href="#design-resources"><i class="fa fa-download"></i>设计素材</a> </li>
-        <li> <a href="#cool-web"><i class="fa fa-lightbulb-o" style="font-size:16px;margin:0 6px 0 6px"></i>灵感酷站</a> </li>
-        <li> <a href="#board"><i class="fa fa-pinterest" style="margin:0 7px 0 5px"></i>灵感画板</a> </li>
-        <li> <a href="#design-tutorials"><i class="fa fa-graduation-cap" style="margin:0 9px 0 3px"></i>设计教程</a> </li>
+        <li> <a href="#cool-web"><i class="fa fa-lightbulb-o" style=" margin: 0 10px 0 5px; font-size: 26px;"></i>灵感酷站</a> </li>
+        <li> <a href="#design-tutorials"><i class="fa fa-graduation-cap" style="margin: 0 15px 0 -3px;"></i>设计教程</a> </li>
         <li> <a href="#peise"><i class="fa fa-eyedropper"></i>配色</a> </li>
         <li> <a href="#design-tools"><i class="fa fa-paint-brush"></i>设计工具</a> </li>
         <li> <a href="#design-specification"><i class="fa fa-crop"></i>尺寸规范</a> </li>
-        <li> <a href="#sketch"><i class="fa fa-diamond"></i>Sketch</a> </li> 
-        <li> <a href="#ued"><i class="fa fa-group"></i>UED团队</a> </li>
+        <li> <a href="#sketch"><i class="fa fa-diamond" style="font-size: 22px;"></i>Sketch</a> </li> 
+        <li> <a href="#ued"><i class="fa fa-group" style="font-size: 23px;"></i>UED团队</a> </li>
       </ul>
     </div>
   </div>
@@ -49,7 +51,7 @@
           <div class="panel-heading" ><i class="fa fa-bookmark-o"></i> 常用 </div>
           <div class="panel-body">
             <dl class="row">
-              <dd class="col-sm-3 col-md-2 col-xs-4 behance"> <a href="https://www.jq22.com" target="_blank"><i class="link-logo"></i><span class="link-title">jq22</span><span class="link-info">丰富的前端插件</span></a> </dd>
+              <dd class="col-sm-3 col-md-2 col-xs-4 behance"> <a href="https://www.jq22.net" target="_blank"><i class="link-logo"></i><span class="link-title">jq22</span><span class="link-info">丰富的前端插件</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4 dribbble"> <a href="http://dribbble.com" target="_blank"><i class="link-logo"></i><span class="link-title">Dribbble</span><span class="link-info">界面设计推荐必去网站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4 awwwards"> <a href="http://www.htmleaf.com" target="_blank"><i class="link-logo"></i><span class="link-title">htmleaf</span><span class="link-info">丰富的前端插件</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4 uilover"> <a href="http://layer.layui.com/" target="_blank"><i class="link-logo"></i><span class="link-title">layer</span><span class="link-info">功能强大的弹出插件</span></a> </dd>
@@ -67,10 +69,10 @@
         
         <hr id="developer">
         <div class="links panel">
-          <div class="panel-heading"><i class="fa fa-bug"></i> 前端开发</div>
+          <div class="panel-heading"><i class="fa fa-bug"></i> 前端开发<span class="badge cl">推荐</span><span class="badge">前端工具</span></div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">推荐</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">推荐</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.w3school.com.cn" target="_blank"><i class="link-logo"></i><span class="link-title">w3school</span><span class="link-info">前端入门教程网站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://tympanus.net/codrops" target="_blank"><i class="link-logo"></i><span class="link-title">Codrops</span><span class="link-info">前端技术分享博客</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.bootcss.com" target="_blank"><i class="link-logo"></i><span class="link-title">Bootstrap中文站</span><span class="link-info">Bootstrap流行的响应式前端框架</span></a> </dd>
@@ -83,7 +85,7 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.bootcdn.cn" target="_blank"><i class="link-logo"></i><span class="link-title">bootCDN静态资源库</span><span class="link-info">稳定、快速、免费的开源项目 CDN 服务</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">前端工具</a></dt>  
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">前端工具</a></dt>  -->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="www.spritecow.com/" target="_blank"><i class="link-logo"></i><span class="link-title">spritecow</span><span class="link-info">图片精灵</span>  </a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://css3generator.com" target="_blank"><i class="link-logo"></i><span class="link-title">CSS3 Generator</span><span class="link-info">CSS3渐变、阴影、动画等在线工具集合</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://cssanimate.com" target="_blank"><i class="link-logo"></i><span class="link-title">cssanimate</span><span class="link-info">CSS动画生成工具</span></a> </dd>
@@ -98,17 +100,17 @@
         </div>
         <hr id="infographic">
         <div class="links panel">
-          <div class="panel-heading"><i class="fa fa-envira"></i> 常用组件/插件</div>
+          <div class="panel-heading"><i class="fa fa-envira"></i> 常用组件/插件<span class="badge">综合</span><span class="badge cl">触屏滚动</span><span class="badge cl2">日期选择器</span><span class="badge">图表</span><span class="badge cl">弹出层</span><span class="badge cl">弹出层</span></div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 "><a href="#nogo" target="_blank">综合</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 "><a href="#nogo" target="_blank">综合</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.dowebok.com/" target="_blank">Dowebok <span class="link-info">前端代码库</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://xueduany.github.io/KitJs/KitJs/index.html" target="_blank">KitJs <span class="link-info">KitJs组件</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.jq22.com/" target="_blank">jq22 <span class="link-info">前端代码库</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.htmleaf.com/" target="_blank">Dowebok <span class="link-info">前端代码库</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">触屏滚动</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">触屏滚动</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.superslide2.com/TouchSlide/index.html" target="_blank">TouchSlide<span class="link-info">移动端图片切换</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.swiper.com.cn/" target="_blank">Swiper<span class="link-info">移动端图片切换</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://owlgraphic.com/owlcarousel/" target="_blank">Owlcarousel<span class="link-info">移动端图片切换</span></a> </dd>
@@ -118,7 +120,7 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://github.com/yanhaijing/zepto.fullpage" target="_blank">Zepto.fullpage<span class="link-info">全屏切换</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">日期选择器</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">日期选择器</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://laydate.layui.com/" target="_blank">laydate<span class="link-info">layer ui 日期控件</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.bootcss.com/p/bootstrap-datetimepicker/" target="_blank">datetimepicker</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://amsul.ca/pickadate.js/" target="_blank">pickadate</a> </dd>
@@ -128,7 +130,7 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://keith-wood.name/calendarsPicker.html" target="_blank">calendarsPicker</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 "><a href="#nogo" target="_blank">图表</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 "><a href="#nogo" target="_blank">图表</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://echarts.baidu.com/" target="_blank">Echarts<span class="link-info">百度图表</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.hcharts.cn/" target="_blank">Highcharts(中)</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.jscharts.com/" target="_blank">Jscharts</a> </dd>
@@ -136,13 +138,13 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://taucharts.com/" target="_blank">Taucharts</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">弹出层</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">弹出层</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://layer.layui.com/" target="_blank">layer<span class="link-info">超级好用</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://joaopereirawd.github.io/animatedModal.js/" target="_blank">animatedModal</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://t4t5.github.io/sweetalert/" target="_blank">sweetalert</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">其他</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">其他</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://github.com/ximan/dropload" target="_blank">下拉刷新、上拉加载 </a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://github.com/tuupola/jquery_lazyload" target="_blank">懒加载</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://github.com/phoetry/textareaAutoHeight" target="_blank">textarea自适应高度</a> </dd>
@@ -157,10 +159,10 @@
         </div>
         <hr id="frame">
         <div class="links panel">
-          <div class="panel-heading"><i class="fa fa-gg"></i>框架/库</div>
+          <div class="panel-heading"><i class="fa fa-gg"></i>框架/库<span class="badge cl2">UI</span><span class="badge cl2">js</span><span class="badge cl">动画库</span><span class="badge ">字体图标</span><span class="badge cl">资源库</span></div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row3"><a href="#nogo" target="_blank">UI</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row3"><a href="#nogo" target="_blank">UI</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.bootcss.com/" target="_blank">Bootstrap(中)</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://yuilibrary.com/">Yui</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://frozenui.github.io/" target="_blank">frozenui</a> </dd>
@@ -176,7 +178,7 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://sui.taobao.org/sui/docs/" target="_blank">sui</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row3"><a href="#nogo" target="_blank">JS</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row3"><a href="#nogo" target="_blank">JS</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://jquery.com/" target="_blank">Jquery</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.zeptojs.cn/" target="_blank">Zeptojs</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.apjs.net/" target="_blank">Angularjs(中)</a> </dd>
@@ -190,7 +192,7 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://thinkjs.org/" target="_blank">Thinkjs</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row6"><a href="#nogo" target="_blank">动画库</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row6"><a href="#nogo" target="_blank">动画库</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://daneden.github.io/animate.css/" target="_blank">Animate</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://anicollection.github.io/" target="_blank">Anicollection</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://elrumordelaluz.github.io/csshake/" target="_blank">Cssshake</a> </dd>
@@ -225,7 +227,7 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://greensock.com/" target="_blank">Greensock</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">字体图标</a></dt>
+              <!--<dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">字体图标</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://weloveiconfonts.com/" target="_blank">Loveiconfonts</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href=" https://glyphter.com/" target="_blank">Glyphter</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://perfecticons.com/" target="_blank">Perfecticons</a> </dd>
@@ -238,14 +240,14 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://www.google.com/design/icons/" target="_blank">Google Material Design</a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">资源库</a></dt>
+             <!-- <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">资源库</a></dt>-->
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://cdn.code.baidu.com/" target="_blank">百度静态资源共享库</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://npm.taobao.org/" target="_blank">Taobaonpm</a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.cdnjs.net/" target="_blank">cdnjs</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.bootcdn.cn/" target="_blank">Bootcdn</a> </dd>
-             <!-- <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.javascripting.com/" target="_blank">Javascripting</a> </dd> -->
+			        <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.cdnjs.net/" target="_blank">cdnjs</a> </dd>
+              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.javascripting.com/" target="_blank">Javascripting</a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://microjs.com/" target="_blank">Microjs</a> </dd>
-             <!-- <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://todomvc.com/" target="_blank">TodoMVC</a> </dd> -->
+              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://todomvc.com/" target="_blank">TodoMVC</a> </dd>
             </dl>
           </div>
         </div>
@@ -254,7 +256,6 @@
           <div class="panel-heading"><i class="fa fa-download"></i> 设计素材</div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">UI干货</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://ui-cloud.com" target="_blank"><i class="link-logo"></i><span class="link-title">UI-Cloud</span><span class="link-info">海量UI资源，可当素材库或灵感库使用</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://flypixel.com" target="_blank"><i class="link-logo"></i><span class="link-title">flypixel</span><span class="link-info">目前已有800多个优秀UI资源</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://365psd.com" target="_blank"><i class="link-logo"></i><span class="link-title">365psd</span><span class="link-info">每天一款高品质PSD素材</span></a> </dd>
@@ -267,7 +268,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://freebiesbug.com" target="_blank"><i class="link-logo"></i><span class="link-title">Freebiesbug</span><span class="link-info">综合UI素材网站</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">网站模板</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://themeforest.net/category/all?ref=shejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">Themeforest</span><span class="link-info">质量极高的网页模板分享平台 也可以在这里找灵感</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.shejidaren.com/tag/%E7%BD%91%E7%AB%99%E6%A8%A1%E6%9D%BF" target="_blank"><i class="link-logo"></i><span class="link-title">网站模板</span><span class="link-info">不定期精选优秀PSD/HTML网站模板</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://templated.co" target="_blank"><i class="link-logo"></i><span class="link-title">Templated</span><span class="link-info">响应式模板分享站</span></a> </dd>
@@ -275,7 +275,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://www.templatemonster.com/cn/?aff=freeui" target="_blank"><i class="link-logo"></i><span class="link-title">网页模板巨人</span><span class="link-info">提供多行业企业网站、CMS、商城模板</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">图标</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.easyicon.net" target="_blank"><i class="link-logo"></i><span class="link-title">Easy icon</span><span class="link-info">图标搜索引擎(中英)</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.iconfinder.com" target="_blank"><i class="link-logo"></i><span class="link-title">Icon Finder</span><span class="link-info">图标搜索引擎(英)</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.logoeps.com" target="_blank"><i class="link-logo"></i><span class="link-title">Logo EPS</span><span class="link-info">可以免费下载矢量LOGO模板的网站</span></a> </dd>
@@ -288,7 +287,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.iconshock.com" target="_blank"><i class="link-logo"></i><span class="link-title">iconShock</span><span class="link-info">这里可以找到一些精致的拟物化图标</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">矢量图 / 笔刷 / 纹理</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://cn.freepik.com" target="_blank"><i class="link-logo"></i><span class="link-title">Freepik</span><span class="link-info">百万级矢量素材库</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://qbrushes.net" target="_blank"><i class="link-logo"></i><span class="link-title">Qbrushes</span><span class="link-info">有PS笔刷以及纹理素材</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://subtlepatterns.com" target="_blank"><i class="link-logo"></i><span class="link-title">Subtle Patterns</span><span class="link-info">平铺背景分享，很漂亮</span></a> </dd>
@@ -301,7 +299,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://sketchfab.com/models/popular" target="_blank"><i class="link-logo"></i><span class="link-title">Sketchfab</span></a><span class="sub-link"> <span class="link-info">优秀3D模型展示社区</span> </span> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">字体下载</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://ziti.admin5.com" target="_blank"><i class="link-logo"></i><span class="link-title">A5字体下载</span><span class="link-info">中文字体下载推荐网站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.dafont.com" target="_blank"><i class="link-logo"></i><span class="link-title">dafont</span><span class="link-info">大量免费英文字体下载站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.fontsquirrel.com" target="_blank"><i class="link-logo"></i><span class="link-title">fontsquirrel</span><span class="link-info">字体松鼠，可商用的免费字体</span></a> </dd>
@@ -314,7 +311,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://www.google.com/fonts" target="_blank"><i class="link-logo"></i><span class="link-title">谷歌Web Font</span><span class="link-info">做英文站，来这里找字体吧，直接用在web上</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">免费高清图片</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://unsplash.com" target="_blank"><i class="link-logo"></i><span class="link-title">Unsplash</span><span class="link-info">高品质图片素材，可免费用在任何地方</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.pexels.com" target="_blank"><i class="link-logo"></i><span class="link-title">Pexels</span><span class="link-info">免费图片分享</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.gratisography.com" target="_blank"><i class="link-logo"></i><span class="link-title">Gratisography</span><span class="link-info">免费高分辨率真图片，可个人及商用</span></a> </dd>
@@ -327,15 +323,13 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://littlevisuals.co" target="_blank"><i class="link-logo"></i><span class="link-title">Little Visuals</span><span class="link-info">免费图片，可用于任何地方</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">付费图片素材</a></dt>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="photo-download.html" onclick="return false;" class="frame-link"><i class="link-logo"></i><span class="link-title">海洛图库代下载</span><span class="link-info">官网70元/张，本站10元/张</span></a> </dd>
+            	<dd class="col-sm-3 col-md-2 col-xs-4"> <a href="photo-download.html" onclick="return false;" class="frame-link"><i class="link-logo"></i><span class="link-title">海洛图库代下载</span><span class="link-info">官网70元/张，本站10元/张</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://photodune.net/?ref=shejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">PhotoDune</span><span class="link-info">提供高质量的摄影图片资源库</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://www.500px.com" target="_blank"><i class="link-logo"></i><span class="link-title">500px</span><span class="link-info">国外高质量摄影照片网站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://www.pixelsquid.com" target="_blank"><i class="link-logo"></i><span class="link-title">PixelSquid</span><span class="link-info">去背景3D素材下载站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://cn.dollarphotoclub.com" target="_blank"><i class="link-logo"></i><span class="link-title">DOOLAR PHOTO</span><span class="link-info">高清图仅需$1/张</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#gqbz" id="#gqbz">高清壁纸</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.bing.com/gallery" target="_blank"><i class="link-logo"></i><span class="link-title">Bing Gallery</span><span class="link-info">必应电脑桌面壁纸</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://alpha.wallhaven.cc" target="_blank"><i class="link-logo"></i><span class="link-title">WallHaven</span><span class="link-info">高清壁纸搜索引擎，原wallbase.cc</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://wallcoo.com" target="_blank"><i class="link-logo"></i><span class="link-title">猫猫壁纸酷</span><span class="link-info">众多类型壁纸下载</span></a> </dd>
@@ -348,7 +342,6 @@
           <div class="panel-heading"><i class="fa fa-lightbulb-o"></i> 灵感酷站</div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">WEB</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.cssdesignawards.com" target="_blank"><i class="link-logo"></i><span class="link-title">CSS Design Awards</span><span class="link-info">欧美网页设计欣赏</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.awwwards.com" target="_blank"><i class="link-logo"></i><span class="link-title">Awwwards</span><span class="link-info">欧美网页设计欣赏</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://4db.cc" target="_blank"><i class="link-logo"></i><span class="link-title">4db</span><span class="link-info">日本网页设计欣赏</span></a> </dd>
@@ -361,7 +354,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://hoverstat.es" target="_blank"><i class="link-logo"></i><span class="link-title">hoverstat</span><span class="link-info">Web 交互动画欣赏</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">移动APP UI</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.dribbble.com" target="_blank"><i class="link-logo"></i><span class="link-title">Dribbble</span><span class="link-info">设计师必备灵感站</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://pttrns.com" target="_blank"><i class="link-logo"></i><span class="link-title">Pttrns</span><span class="link-info">收集移动APP界面设计作品</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.uiparade.com" target="_blank"><i class="link-logo"></i><span class="link-title">UIparade</span></a><span class="sub-link"> <span class="link-info">UI零碎组件分享</span> <a href="http://uidb.io" target="_blank">UIDB（备用）</a> </span> </dd>
@@ -374,7 +366,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.calltoidea.com" target="_blank"><i class="link-logo"></i><span class="link-title">Call to idea</span><span class="link-info">细节分类各种UI设计元素的UI酷站</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">动效设计</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://uimovement.com" target="_blank"><i class="link-logo"></i><span class="link-title">UI Movement</span><span class="link-info">主要展示移动APP的动效界面，更新快</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://motions.me" target="_blank"><i class="link-logo"></i><span class="link-title">Motions</span><span class="link-info">有APP和其它好玩的GIF动画作品</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://codepen.io/patterns" target="_blank"><i class="link-logo"></i><span class="link-title">Design Patterns</span><span class="link-info">分类展示的动效元素，并且已实现代码编写</span></a> </dd>
@@ -396,28 +387,7 @@
             </dl>
           </div>
         </div>
-        <hr id="board">
-        <div class="links panel">
-          <div class="panel-heading"><i class="fa fa-pinterest"></i> 灵感画板</div>
-          <div class="panel-body">
-            <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">推荐</a></dt>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/boards/13553099/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">中文字体设计</span><span class="link-info">中文字体设计灵感</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/boards/13553202/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">英文字体设计</span><span class="link-info">英文字体设计灵感</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/boards/2943371/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">网页设计</span><span class="link-info">网页设计灵感</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/bianpinghuazhuantiyemian/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">扁平化专题页面</span><span class="link-info">扁平化专题页面设计灵感</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/boards/18801577/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">UI设计规范</span><span class="link-info">Android / iOS相关规范</span></a> </dd>
-            </dl>
-            <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">APP UI</a></dt>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/yindaoye/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">引导页</span><span class="link-info">APP引导页</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/niwuhuaicon/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">拟物化icon</span><span class="link-info">拟物化图标分享</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/danchuangsheji/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">弹窗设计</span><span class="link-info">精美的弹窗设计</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/UIjiemianyuanxing/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">UI界面原型</span><span class="link-info">原型草图、线框架图，但精美不一定是好原型</span></a> </dd>
-              <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/bianpinghuaUI/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">扁平化ui</span><span class="link-info">扁平化ui设计作品</span></a> </dd>
-            </dl>
-          </div>
-        </div>
+        
         <hr id="design-tutorials">
         <div class="links panel">
           <div class="panel-heading"><i class="fa fa-graduation-cap"></i> 设计教程</div>
@@ -437,7 +407,6 @@
           <div class="panel-heading"><i class="fa fa-eyedropper"></i> 配色</div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank">配色工具</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.shejidaren.com/examples/tools/color-scheme" target="_blank"><i class="link-logo"></i><span class="link-title">Color Scheme</span><span class="link-info">在线配色中文版</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://coolors.co/browser" target="_blank"><i class="link-logo"></i><span class="link-title">coolors APP</span><span class="link-info">在线配色以及查看优秀的配色方案</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.colorhunter.com" target="_blank"><i class="link-logo"></i><span class="link-title">Color Hunter</span><span class="link-info">上传图像获取配色方案</span></a> </dd>
@@ -450,8 +419,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.palettable.io" target="_blank"><i class="link-logo"></i><span class="link-title">PALETTABLE</span><span class="link-info">推荐！智能匹配的颜色赞哦！</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row2"><a href="#nogo" target="_blank"><span style="font-size:12px;display:inline-block;margin-bottom:5px;opacity:.5">Google</span><br>
-                Material Desgin 系列</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.materialpalette.com" target="_blank"><i class="link-logo"></i><span class="link-title">Material风格配色</span><span class="link-info">轻易搭配出Google Magerial Design的配色方案</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://www.materialui.co/colors" target="_blank"><i class="link-logo"></i><span class="link-title">Material UI</span><span class="link-info">把所有颜色汇聚在一个页面上</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.sankk.in/material-mixer" target="_blank"><i class="link-logo"></i><span class="link-title">material mixer</span><span class="link-info">快速 DIY 美观的 Material design APP 界面配色</span></a> </dd>
@@ -464,7 +431,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://material.colorion.co" target="_blank"><i class="link-logo"></i><span class="link-title">Colorion</span><span class="link-info">分享 Material 设计配色，带收藏夹功能</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">配色灵感</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://huaban.com/explore/shejipeise/?md=bdwzshejidaren" target="_blank"><i class="link-logo"></i><span class="link-title">设计配色方案</span><span class="link-info"></span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.shejidaren.com/126-brand-color-swatches.html" target="_blank"><i class="link-logo"></i><span class="link-title">126个著名品牌颜色</span><span class="link-info"></span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://nipponcolors.com" target="_blank"><i class="link-logo"></i><span class="link-title">日本传统色系</span><span class="link-info"></span></a> </dd>
@@ -486,7 +452,6 @@
           <div class="panel-heading"><i class="fa fa-paint-brush"></i> 设计工具</div>
           <div class="panel-body">
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4 row5"><a href="#nogo" target="_blank">辅助</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.shejidaren.com/assistor-ps-plugin.html" target="_blank"><i class="link-logo"></i><span class="link-title">Assistor PS</span><span class="link-info">功能强大的标注工具</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://optimizilla.com/zh" target="_blank"><i class="link-logo"></i><span class="link-title">在线JPG/PNG压缩</span><span class="link-info">Optimizilla在线图像压缩工具，可批量</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.shejidaren.com/examples/tools/golden-ratio/index.html" target="_blank"><i class="link-logo"></i><span class="link-title">黄金比计算工具</span><span class="link-info">Golden Ratio，可以计算黄金比例的工具</span></a> </dd>
@@ -512,7 +477,6 @@
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="http://www.shejidaren.com/examples/tools/shu-fa-zi-ti/index.html" target="_blank"><i class="link-logo"></i><span class="link-title">书法字体生成工具</span><span class="link-info">书法、手写、毛笔字体设计利器</span></a> </dd>
             </dl>
             <dl class="row">
-              <dt class="col-sm-3 col-md-2 col-xs-4"><a href="#nogo" target="_blank">团队协作 · 效率</a></dt>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://worktile.com" target="_blank"><i class="link-logo"></i><span class="link-title">Worktile</span><span class="link-info">团队协同工具，让你的团队随时随地一起工作</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://tower.im" target="_blank"><i class="link-logo"></i><span class="link-title">Tower</span><span class="link-info">高效管理你的团队以及项目</span></a> </dd>
               <dd class="col-sm-3 col-md-2 col-xs-4"> <a href="https://trello.com" target="_blank"><i class="link-logo"></i><span class="link-title">Trello</span><span class="link-info">国外免费团队协作工具</span></a> </dd>
@@ -609,6 +573,6 @@
 <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script> 
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <script src="//cdn.bootcss.com/jquery.perfect-scrollbar/0.5.6/perfect-scrollbar.min.js"></script> 
-<script type="text/javascript" src="sjdh/js/hao-min.js"></script>
+<script type="text/javascript" src="sjdh/js/index.js"></script>
 </body>
 </html>
