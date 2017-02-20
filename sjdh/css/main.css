@@ -47,10 +47,10 @@ html,body,.h100 {
 }
 
 body {
-    background: #e7eff4;
-    background;#e6f0f2;color: #39474b;
+    background: #f9f9f9;
+    color: #333;
     font-size: 12px;
-    font-family: "Lantinghei SC","Open Sans","Lucida Grande",Helvetica,STheiti,Verdana,"microsoft yahei","simsun",Geneva,sans-serif
+    font-family: "microsoft yahei","simsun",Geneva,sans-serif
 }
 
 a {
@@ -77,7 +77,7 @@ a.btn:hover,.nav a:hover {
     left: 0;
     width: 100%;
     z-index: 2;
-    background: #17191a url(../images/header-bg.png) repeat-x 0 0;
+    background: #3f51b5;
     height: 51px;
     box-shadow: 0 1px 2px rgba(0,0,0,.35)
 }
@@ -91,14 +91,15 @@ a.btn:hover,.nav a:hover {
     margin: 10px 0 0 18px
 }
 
-.logo span {
+/*.logo span {
     position: absolute;
     left: 75px;
     top: 12px;
     width: 80px;
     color: #ffa800
-}
-
+}*/
+.logo a{ font-size: 20px; color: #fff;}
+.logo a:hover{ color: #fff;}
 .top-menu {
     position: absolute;
     left: 210px
@@ -113,8 +114,8 @@ a.btn:hover,.nav a:hover {
     padding: 0 12px;
     height: 50px;
     text-align: center;
-    color: #a5bcc2;
-    background: url(../images/top-menu-hover.png) repeat-x 0 0
+    color: #fff;
+    background: transparent;
 }
 
 .top-menu a i {
@@ -128,7 +129,7 @@ a.btn:hover,.nav a:hover {
 
 .top-menu a:hover,.top-menu li.active a {
     background-position: 0 -50px;
-    color: #31c193
+    color: #fff
 }
 
 .frame-link.fa-heart {
@@ -287,13 +288,13 @@ a.btn:hover,.nav a:hover {
     z-index: 100;
     left: 150px;
     top: 17px;
-    color: #a5bcc2;
+    color: #fff;
     font-size: 18px!important;
     cursor: pointer
 }
 
 .expand:hover,.expand:active {
-    color: #31c193
+    color: #fff
 }
 
 .hide-side .expand {
@@ -304,18 +305,19 @@ a.btn:hover,.nav a:hover {
     position: fixed;
     top: 50px;
     left: 0;
-    width: 180px;
-    background: #2a393c
+    width: 240px;
+    background: #fff;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)!important;
 }
 
 .left-nav>li>a {
     display: block;
     padding: 0 12px;
-    height: 36px;
-    line-height: 26px;
+    height: 45px;
+    line-height: 35px;
     font-size: 14px;
-    color: #31c193;
-    text-shadow: 0 1px 0 #293334
+    color: #333;
+
 }
 
 .left-nav>li>a:hover {
@@ -329,8 +331,10 @@ a.btn:hover,.nav a:hover {
 }
 
 .left-nav>li>a>i {
-    width: 16px;
-    margin: 0 8px 0 4px
+    width: 24px;
+    font-size: 24px;
+    margin-right: 15px;
+    vertical-align: middle;
 }
 
 .left-nav ul {
@@ -413,17 +417,18 @@ a.btn:hover,.nav a:hover {
 .nav>li>a {
     position: relative;
     display: block;
-    padding: 5px 10px
+    padding: 5px 10px;
+    padding-left: 24px;
 }
 
 .nav>li>a:hover,.nav>li>a:focus,.nav-multi li a:hover,.nav-multi li a:focus {
     text-decoration: none;
-    background-color: #536367
+   background: rgba(0,0,0,.04);
 }
 
 .nav li.active>a {
-    color: #31c193;
-    background: #334042
+    color: #333;
+    background: rgba(0,0,0,.04);
 }
 
 .nav li.active .nav-multi-expland {
@@ -1921,17 +1926,17 @@ small {
 }
 
 .right-side {
-    margin-left: 180px;
+    margin-left: 240px;
     padding-top: 50px;
     fill: red
 }
 
 .box-main {
-    background: #e7eff4;
+    background: #f9f9f9;
     margin: 0 auto;
-    max-width: 1280px;
+   /* max-width: 1280px;*/
     padding: 10px 20px 0;
-    color: #518193;
+    color: #333;
     font-size: 15px
 }
 
@@ -2099,11 +2104,11 @@ small {
 }
 
 .left-nav>li>a:hover {
-    background-color: #334042
+    background: rgba(0,0,0,.04);
 }
 
 .left-nav a>i:first-child {
-    color: #708985
+    color: #3f51b5
 }
 
 .left-nav hr {
@@ -2138,7 +2143,7 @@ li .label {
 }
 
 .links dl {
-    border-bottom: 1px solid #f8f8f8;
+    border-bottom: 1px solid #e7eff4;
     padding: 10px 0
 }
 
@@ -3528,7 +3533,7 @@ button.close {
 }
 
 a {
-    color: #00ad35
+    color: #3f51b5
 }
 
 a:hover,.links dd a:hover .link-title,.links dd a:hover .link-info {
@@ -3654,3 +3659,21 @@ a:hover,.links dd a:hover .link-title,.links dd a:hover .link-info {
 .ps-container:hover>.ps-scrollbar-y-rail:hover>.ps-scrollbar-y {
     background-color: #999
 }
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #3f51b5;
+    border-radius: 10px;
+     margin-left: 5px;
+}
+.badge.cl{ background: #E2304D;}
+.badge.cl2{ background: #008C5E;}
