@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>南威ued综合库</title>
+<link rel="shortcut icon" href="../../favicon.ico">
+<link rel="stylesheet" href="../../css/font-awesome.css" />
+<link rel="stylesheet" href="../../css/metisMenu.css" />
+<link rel="stylesheet" href="../../css/guide.css" />
+<link rel="stylesheet" href="../../css/waves.css" />
+<link rel="stylesheet" href="../../css/shcss.css" />
+<link rel="stylesheet" href="../../css/pace-theme-minimal.css" />
+<link rel="stylesheet" href="../../css/style.css" />
+</head>
+
+<body>
+<div class="lw-wraper"> 
+  <!--头部-->
+  <div class="lw-topbar"> 
+    <!--其他-->
+    <div class="clearfix"> 
+      <a class="logo fl" href="#"></a>
+      <ul class="lw-nav fl">
+        <li class="active"> <a href="../../index.html"><i class="fa fa-html5"></i>规范</a> </li>
+        <li> <a href="../../frame.html"><i class="fa fa-slack"></i>框架</a> </li>
+        <li> <a href="../../code.html"><i class="fa fa-code"></i>常用代码</a> </li>
+        <li> <a href="../../plug-in.html"><i class="fa fa-code-fork"></i>插件</a> </li>
+      </ul>
+    </div>
+    <!--结束--> 
+  </div>
+  <!--导航-->
+  <div class="lw-side-menu">
+    <div class="slimscrollleft">
+	    <div class="lw-menu">	
+	      <ul id="menu" class="metismenu">
+            <li><a href="javascript:;" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>css规范<span class="fa arrow"></span></a>
+            	<ul>
+            		<li><a href="../../index.html" class="waves-effect waves-classic">分类方法</a></li>
+            		<li><a href="mmgz.html" class="waves-effect waves-classic">命名规则</a></li>
+            		<li><a href="dmgs.html" class="waves-effect waves-classic">代码格式</a></li>
+            	</ul>
+            </li>
+          	<li><a href="ztjg.html" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>html规范</a></li>
+          	<li class="active"><a href="#" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>工作流程<span class="fa arrow"></span></a>
+          		<ul>
+          			<li><a href="kfzb.html" class="waves-effect waves-classic">开发准备</a></li>
+          			<li><a href="kfgc.html" class="waves-effect waves-classic active">开发过程</a></li>
+          			<li><a href="kfcc.html" class="waves-effect waves-classic">开发产出</a></li>
+          		</ul>
+          	</li>
+	      </ul>
+	    </div>
+    </div>
+    <!--结束--> 
+  </div>
+  <!--内容-->
+  <div class="lw-page-container">
+  	<div class="slimscrollleft">
+	  	<!--标签页-->
+	  	<div class="lw-page-header-tit">
+	  		<h4 class="lw-page-tit">开发过程</h4>
+	  	</div>
+	  	<!--正文-->
+	  	<div class="lw-page-con">
+	  		<div class="lw-container">
+	  			<div class="row">
+	  				<div class="col-xs-12">
+	  					<div class="lw-box">
+	  						<div class="lw-box-body">
+	  							<dl>
+	                    <dt>职责任务</dt>
+	                    <dd>
+	                        <ol>
+	                            <li>确定一个页面工程师负责人，他将负责对整个页面开发工作做统筹规划、分配协调等管理工作和主开发职责。</li>
+	                            <li>确认交互原型或视觉效果已经定稿，再开始开发工作。</li>
+	                            <li>如果采取并行模式（视觉设计和页面开发同时进行），则以交互原型定稿为准（当视觉效果定稿后，页面工程师再补充细节），开始分配。</li>
+	                            <li>按页面类型分配，同一类型页面分配给同一个人。</li>
+	                            <li>每个人都要了解页面公共元素（多个页面中相同或相似部分），一个公共元素只分配到一个人，每人完成自身页面的同时完成“提取剥离”。</li>
+	                            <li>在项目管理平台中创建细分的开发任务，填写任务详情和时间，如果任务间存在关系，则设置好关联或从属关系。</li>
+	                        </ol>
+	                    </dd>
+	                    <dt>页面开发</dt>
+	                    <dd>
+	                        <ol>
+	                            <li>创建前端目录，包含“页面开发”目录（如:js、css、html、img）及“提取剥离”目录（如：demo）。</li>
+	                            <li>和交互、视觉及其他前端工程师或后端工程师保持良好的沟通。</li>
+	                            <li>及时反馈问题和建议：对效果疑问的确认、对状态缺失的补充、对优雅退化的建议、对行为结构的说明等等。</li>
+	                            <li>如果采取并行模式（页面开发和JS开发同时进行），则以交互原型定稿为准，JS开发工程师可并行开发业务逻辑层，当页面开发完成后再嵌入UI层。</li>
+	                        </ol>
+	                    </dd>
+	                    <dt>提取剥离</dt>
+	                    <dd>
+	                        <ol>
+	                            <li>页面开发的同时提取布局（grid）、模块（module）、元件（unit）至对应的HTML文件。</li>
+	                            <li>避免重复劳动，对页面元素一目了然，在增加元素时首先来此目录查找是否已经实现或有相似实现而只需扩展。</li>
+	                            <li>“提取剥离”目录中的HTML文件和“页面开发”目录中的HTML文件需保持同步维护。</li>
+	                        </ol>
+	                    </dd>
+	                </dl>
+	  						</div>
+	  					</div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+  	</div>
+  </div>
+</div>
+<!--js--> 
+<script type="text/javascript" src="../../js/jquery.js"></script> 
+<script type="text/javascript" src="../../js/metisMenu.js"></script> 
+<script type="text/javascript" src="../../js/jquery.slimscroll.js"></script> 
+<script type="text/javascript" src="../../js/pace/pace.js"></script>
+<script type="text/javascript" src="../../js/waves.js" ></script>
+<script type="text/javascript" src="../../js/code/shCore.js" ></script>
+<script type="text/javascript" src="../../js/code/shBrushCss.js" ></script>
+<script type="text/javascript" src="../../js/code/shBrushXml.js" ></script>
+<script type="text/javascript" src="../../js/code/shBrushJScript.js" ></script>
+<script type="text/javascript" src="../../js/main.js"></script>
+</body>
+</html>

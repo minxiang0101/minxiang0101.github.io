@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>南威ued综合库</title>
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="css/font-awesome.css" />
+<link rel="stylesheet" href="css/metisMenu.css" />
+<link rel="stylesheet" href="css/guide.css" />
+<link rel="stylesheet" href="css/waves.css" />
+<link rel="stylesheet" href="css/shcss.css" />
+<link rel="stylesheet" href="css/pace-theme-minimal.css" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<div class="lw-wraper"> 
+  <!--头部-->
+  <div class="lw-topbar"> 
+    <!--其他-->
+    <div class="clearfix"> 
+      <a class="logo fl" href="#"></a>
+      <ul class="lw-nav fl">
+        <li class="active"> <a href="index.html"><i class="fa fa-html5"></i>规范</a> </li>
+        <li> <a href="frame.html"><i class="fa fa-slack"></i>框架</a> </li>
+        <li> <a href="code.html"><i class="fa fa-code"></i>常用代码</a> </li>
+        <li> <a href="plug-in.html"><i class="fa fa-code-fork"></i>插件</a> </li>
+      </ul>
+    </div>
+    <!--结束--> 
+  </div>
+  <!--导航-->
+  <div class="lw-side-menu">
+    <div class="slimscrollleft">
+	    <div class="lw-menu">	
+	      <ul id="menu" class="metismenu">
+            <li class="active"><a href="#" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>css规范<span class="fa arrow"></span></a>
+            	<ul>
+            		<li><a href="index.html" class="waves-effect waves-classic active">分类方法</a></li>
+            		<li><a href="page/gf/mmgz.html" class="waves-effect waves-classic">命名规则</a></li>
+            		<li><a href="page/gf/dmgs.html" class="waves-effect waves-classic">代码格式</a></li>
+            	</ul>
+            </li>
+          	<li><a href="page/gf/ztjg.html" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>html规范</a></li>
+          	<li><a href="#" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>工作流程<span class="fa arrow"></span></a>
+          		<ul>
+          			<li><a href="page/gf/kfzb.html" class="waves-effect waves-classic">开发准备</a></li>
+          			<li><a href="page/gf/kfgc.html" class="waves-effect waves-classic">开发过程</a></li>
+          			<li><a href="page/gf/kfcc.html" class="waves-effect waves-classic">开发产出</a></li>
+          		</ul>
+          	</li>
+	      </ul>
+	    </div>
+    </div>
+    <!--结束--> 
+  </div>
+  <!--内容-->
+  <div class="lw-page-container">
+  	<div class="slimscrollleft">
+	  	<!--标签页-->
+	  	<div class="lw-page-header-tit">
+	  		<h4 class="lw-page-tit">分类方法</h4>
+	  	</div>
+	  	<!--正文-->
+	  	<div class="lw-page-con">
+	  		<div class="lw-container">
+	  			<div class="row">
+	  				<div class="col-xs-12">
+	  					<div class="lw-box">
+	  						<div class="lw-box-body">
+	  							<dl>
+									  <dt>CSS文件的分类和引用顺序</dt>
+									  <dd>
+									    <p>通常，一个项目我们只引用一个CSS，但是对于较大的项目，我们需要把CSS文件进行分类。</p>
+									    <p>我们按照CSS的性质和用途，将CSS文件分成“公共型样式”、“特殊型样式”、“皮肤型样式”，并以此顺序引用（按需求决定是否添加版本号）。</p>
+									    <ol>
+									      <li>公共型样式：包括了以下几个部分：“标签的重置和设置默认值”、“统一调用背景图和清除浮动或其他需统一处理的长样式”、“网站通用布局”、“通用模块和其扩展”、“元件和其扩展”、“功能类样式”、“皮肤类样式”。</li>
+									      <li>特殊型样式：当某个栏目或页面的样式与网站整体差异较大或者维护率较高时，可以独立引用一个样式：“特殊的布局、模块和元件及扩展”、“特殊的功能、颜色和背景”，也可以是某个大型控件或模块的独立样式。</li>
+									      <li>皮肤型样式：如果产品需要换肤功能，那么我们需要将颜色、背景等抽离出来放在这里。</li>
+									    </ol>
+									    <pre class="brush: xml;">
+									    	&lt;link href="css/global.css" rel="stylesheet" type="text/css"/&gt;
+											&lt;link href="css/index.css" rel="stylesheet" type="text/css"/&gt;
+											&lt;link href="css/skin.css" rel="stylesheet" type="text/css"/&gt;</pre>
+									   </dd>
+									   
+								  </dl>
+	  						</div>
+	  					</div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+  	</div>
+  </div>
+</div>
+<!--js--> 
+<script type="text/javascript" src="js/jquery.js"></script> 
+<script type="text/javascript" src="js/metisMenu.js"></script> 
+<script type="text/javascript" src="js/jquery.slimscroll.js"></script> 
+<script type="text/javascript" src="js/pace/pace.js"></script>
+<script type="text/javascript" src="js/waves.js" ></script>
+<script type="text/javascript" src="js/code/shCore.js" ></script>
+<script type="text/javascript" src="js/code/shBrushCss.js" ></script>
+<script type="text/javascript" src="js/code/shBrushXml.js" ></script>
+<script type="text/javascript" src="js/code/shBrushJScript.js" ></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
