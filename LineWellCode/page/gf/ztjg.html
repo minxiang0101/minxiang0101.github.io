@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>南威ued综合库</title>
+<link rel="shortcut icon" href="../../favicon.ico">
+<link rel="stylesheet" href="../../css/font-awesome.css" />
+<link rel="stylesheet" href="../../css/metisMenu.css" />
+<link rel="stylesheet" href="../../css/guide.css" />
+<link rel="stylesheet" href="../../css/waves.css" />
+<link rel="stylesheet" href="../../css/shcss.css" />
+<link rel="stylesheet" href="../../css/pace-theme-minimal.css" />
+<link rel="stylesheet" href="../../css/style.css" />
+</head>
+
+<body>
+<div class="lw-wraper"> 
+  <!--头部-->
+  <div class="lw-topbar"> 
+    <!--其他-->
+    <div class="clearfix"> 
+      <a class="logo fl" href="#"></a>
+      <ul class="lw-nav fl">
+        <li class="active"> <a href="../../index.html"><i class="fa fa-html5"></i>规范</a> </li>
+        <li> <a href="../../frame.html"><i class="fa fa-slack"></i>框架</a> </li>
+        <li> <a href="../../code.html"><i class="fa fa-code"></i>常用代码</a> </li>
+        <li> <a href="../../plug-in.html"><i class="fa fa-code-fork"></i>插件</a> </li>
+      </ul>
+    </div>
+    <!--结束--> 
+  </div>
+  <!--导航-->
+  <div class="lw-side-menu">
+    <div class="slimscrollleft">
+	    <div class="lw-menu">	
+	      <ul id="menu" class="metismenu">
+            <li><a href="javascript:;" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>css规范<span class="fa arrow"></span></a>
+            	<ul>
+            		<li><a href="../../index.html">分类方法</a></li>
+            		<li><a href="mmgz.html">命名规则</a></li>
+            		<li><a href="dmgs.html">代码格式</a></li>
+            	</ul>
+            </li>
+          	<li><a href="ztjg.html" class="waves-effect waves-classic active"><i class="fa fa-clipboard mr10"></i>html规范</a></li>
+          	<li><a href="javascript:;" class="waves-effect waves-classic"><i class="fa fa-clipboard mr10"></i>工作流程<span class="fa arrow"></span></a>
+          		<ul>
+          			<li><a href="kfzb.html">开发准备</a></li>
+          			<li><a href="kfgc.html">开发过程</a></li>
+          			<li><a href="kfcc.html">开发产出</a></li>
+          		</ul>
+          	</li>
+	      </ul>
+	    </div>
+    </div>
+    <!--结束--> 
+  </div>
+  <!--内容-->
+  <div class="lw-page-container">
+  	<div class="slimscrollleft">
+	  	<!--标签页-->
+	  	<div class="lw-page-header-tit">
+	  		<h4 class="lw-page-tit">html规范</h4>
+	  	</div>
+	  	<!--正文-->
+	  	<div class="lw-page-con">
+	  		<div class="lw-container">
+	  			<div class="row">
+	  				<div class="col-xs-12">
+	  					<div class="lw-box">
+	  						<div class="lw-box-body">
+	  							<dl>
+									  <dt>html规范&&结构</dt>
+									  <dd>
+									    <ol>
+                        <li>文件应以“&lt;!DOCTYPE ......&gt;”首行顶格开始，推荐使用“&lt;!DOCTYPE html&gt;”。</li>
+                        <li>必须申明文档的编码charset，且与文件本身编码保持一致，推荐使用UTF-8编码&lt;meta charset="utf-8"/&gt;。</li>
+                        <li>根据页面内容和需求填写适当的keywords和description。</li>
+                        <li>页面title是极为重要的不可缺少的一项。</li>
+                        <li>标签一定要正确嵌套，标签一定要闭合。</li>
+                        <li>尽可能以最严格的xhtml strict标准来嵌套，比如内联元素不能包含块级元素等等。</li>
+												<li>用div等标签布局；表格型数据，table首选。</li>
+												<li>代码风格采用树形结构，提高可读性；避免冗余嵌套。</li>
+												<li>模块之间必须保持独立，区块化布局，方便随意增删改，多人协作维护。</li>
+												<li>非特殊情况下，css采用外链，加在&lt;head&gt;之间；js文件放在页面底部&lt;/body&gt;之前。</li>
+												<li>自定义标签或者属性，用data-开头。</p>
+												<li>需要程序单独赋值或者控制的地方尽量用独立的标签包括起来，方便添加id和其他自定义属性。</li>
+												<li>可能程序在套用时候标签之间会出现空数据，产生（冗余标签）造成多余空白间距，请一定注释声明给后端程序员注意一下，将判断包住标签。</li>
+												<li>避免元素的滚动条和body的滚动条同时出现，影响体验。</li>
+												<li>需要异步加载的地方给出加载中（loading）状态效果。</li>
+                      </ol>
+									    <pre class="brush: xml;">
+									        &lt;!DOCTYPE HTML&gt;
+											&lt;html&gt;
+											&lt;head&gt;
+											&lt;meta charset="utf-8"&gt;
+											&lt;meta name="renderer" content="webkit|ie-comp|ie-stand"&gt;
+											&lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /&gt; /*文档模式*/
+											&lt;meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" /&gt; /*移动端*/
+											&lt;title&gt;网站标题，控制在25个字、50个字节以内&lt;/title&gt;
+											&lt;meta name="keywords" content="关键词,5个左右,单个8汉字以内"/&gt; 
+											&lt;meta name="description" content="网站描述，字数尽量空制在80个汉字，160个字符以内！"/&gt;
+											&lt;link rel="Bookmark" href="favicon.ico" /&gt; 
+											&lt;link rel="Shortcut Icon" href="favicon.ico" /&gt;
+											&lt;link href="css/style.css" rel="stylesheet" type="text/css" /&gt;
+											&lt;/head&gt;
+											&lt;body&gt;
+											&lt;script type="text/javascript" src="js/jquery.min.js"&gt;&lt;/script&gt;
+											&lt;/body&gt;
+											&lt;/html&gt;</pre>
+									   </dd>
+									   <dt>说明文案的注释方法</dt>
+									   <dd>
+									   	  <p>采用类似标签闭合的写法，与HTML统一格式；注释文案两头空格，与CSS注释统一格式。</p>
+									   	  <ol>
+	                        <li>开始注释：&lt;!--&nbsp;注释文案&nbsp;--&gt;（文案两头空格）。</li>
+	                        <li>结束注释：&lt;!--&nbsp;/注释文案&nbsp;--&gt;（文案前加“/”符号，类似标签的闭合）。</li>
+	                        <li>允许只有开始注释！</li>
+	                      </ol>
+	                      <pre class="brush: xml;">
+												&lt;!-- 头部 --&gt;
+												&lt;div class="lw-hd"&gt;
+												&lt;!-- LOGO --&gt;
+												  &lt;h1 class="lw-logo"&gt;&lt;a href="#"&gt;LOGO&lt;/a&gt;&lt;/h1&gt;
+												&lt;!-- /LOGO --&gt;
+												&lt;!-- 导航 --&gt;
+												&lt;ul class="lw-nav"&gt;
+												  &lt;li&gt;&lt;a href="#"&gt;NAV1&lt;/a&gt;&lt;/li&gt;
+												  &lt;li&gt;&lt;a href="#"&gt;NAV2&lt;/a&gt;&lt;/li&gt;
+												&lt;/ul&gt;
+												&lt;!-- /导航 --&gt;
+												&lt;/div&gt;
+												&lt;!-- /头部 --&gt;</pre>
+											</dd>
+									</dl>
+	  						</div>
+	  					</div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+  	</div>
+  </div>
+</div>
+<!--js--> 
+<script type="text/javascript" src="../../js/jquery.js"></script> 
+<script type="text/javascript" src="../../js/metisMenu.js"></script> 
+<script type="text/javascript" src="../../js/jquery.slimscroll.js"></script> 
+<script type="text/javascript" src="../../js/pace/pace.js"></script>
+<script type="text/javascript" src="../../js/waves.js" ></script>
+<script type="text/javascript" src="../../js/code/shCore.js" ></script>
+<script type="text/javascript" src="../../js/code/shBrushCss.js" ></script>
+<script type="text/javascript" src="../../js/code/shBrushXml.js" ></script>
+<script type="text/javascript" src="../../js/code/shBrushJScript.js" ></script>
+<script type="text/javascript" src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+/* Global */
+body {
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    color: #777;
+    padding: 0;
+    margin: 0;
+}
+body {
+    overflow: hidden;
+}
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+a {
+    outline: 0;
+}
+/* Header */
+header {
+    color: #fff;
+    height: 33px;
+    background: #5c646c url(../images/bg-top-bar.png) repeat-x 0px -1px;
+    display: block;
+    line-height: 33px;
+    padding: 0 0 0 10px;
+    position: relative;
+}
+/* Header h1 */
+header h1 {
+    margin: 0;
+    font-size: 13px;
+    text-transform: capitalize;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+    float: left;
+}
+header h1 span {
+    font-weight: 200;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+}
+header h1 em {
+    font-weight: normal;
+    text-transform: none;
+    color: rgba(255,255,0,0.8);
+    font-size: 0.85em;
+}
+/* Header nav */
+nav {
+    line-height: 28px;
+    float: right;
+    display: inline;
+    margin-right: 92px;
+    cursor: default;
+}
+/* Header nav tooltip */
+nav .tooltip {
+    position: absolute;
+    top: 45px;
+    z-index: 1000;
+    font-size: 11px;
+    display: block;
+    padding: 7px 10px;
+    background: rgba(0,0,0,0.7);
+    border: solid 1px rgba(0,0,0,0.5);
+    color: #fff;
+    line-height: 1.2;
+    text-transform: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
+    -moz-box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
+    box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
+}
+
+nav .reset .tooltip {
+    width: 120px;
+    left: -40px;
+    display: none;
+}
+nav .downloader .tooltip {
+    display: none;
+    width: 140px;
+    right: 10px;
+}
+/* Header nav ul li */
+nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+nav ul li {
+    float: left;
+    padding: 0 10px;
+    background: url(../images/nav-divider.png) repeat-y 0px 0px;
+    padding-left: 11px;
+    position: relative;
+}
+nav .downloader {
+    position: absolute;
+    right: 0;
+    width: 72px;
+}
+/* Header nav a */
+nav a {
+    cursor: pointer;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+}
+nav a:hover {
+    text-decoration: underline;
+}
+nav a#download {
+    padding: 0 0 0 13px;
+    background: url(../images/icon-download.png) no-repeat 0px 40%;
+}
+/* shadow */
+.shadow {
+    width: 100%;
+    height: 1px;
+    margin-top: -1px;
+    position: absolute;
+    -webkit-box-shadow: rgba(0,0,0,0.7) 0px 1px 3px;
+    -moz-box-shadow: rgba(0,0,0,0.7) 0px 1px 3px;
+    box-shadow: rgba(0,0,0,0.7) 0px 1px 3px;
+    z-index: 1000;
+}
+/* DeskTop */
+#desk {
+   /* top: 33px;*/
+	 top: 0;
+    left: 380px;
+    right: 0;
+    bottom: 0px;
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+}
+/* Frame */
+#frame {
+    border: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#frame.blueprint {
+    background: #2574b0 url(../images/bg-blueprint.png);
+}
+/* Controls */
+#controls {
+    width: 380px;
+    position: absolute;
+    left: 0;
+    /*top: 33px;*/
+	 top: 0;
+    bottom: 0;
+    background: #fff;
+    -webkit-box-shadow: rgba(0,0,0,0.3) 1px 0px 3px;
+    -moz-box-shadow: rgba(0,0,0,0.3) 1px 0px 3px;
+    box-shadow: rgba(0,0,0,0.3) 1px 0px 3px;
+    z-index: 500;
+}
+/* controls toggleLink */
+#controls .toggleLink {
+    position: absolute;
+    right: -13px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: normal;
+    width: 13px;
+    height: 22px;
+    display: block;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url(../images/sprite-toggle.png) no-repeat 0px 0px;
+}
+#controls .toggleLink.collapsed {
+    background-position: left bottom;
+}
+/* css htmlBox */
+
+#controls.ui-resizable .title-bar {
+    background-color: #eee;
+    background-image: url(../images/scrubber.png), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(242,242,242)), color-stop(1, rgb(220,220,220)));
+    background-image: url(../images/scrubber.png), -moz-linear-gradient(center top, rgb(242,242,242) 0%, rgb(220,220,220) 100%);
+    background-repeat: no-repeat, repeat-x;
+    background-position: 99% 50%, 0px 0px;
+}
+#controls .lines {
+    font-family: Andale Mono, Monaco, Consolas, Lucida Console, monospace;
+    font-size: 9px;
+    line-height: 15px;
+    padding: 5px;
+    background-color: #f5f5f5;
+    width: 20px;
+    text-align: center;
+    color: #999;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+}
+#controls .title-bar {
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(242,242,242)), color-stop(1, rgb(220,220,220)));
+    background-image: -moz-linear-gradient(center top, rgb(242,242,242) 0%, rgb(220,220,220) 100%);
+    background-repeat: repeat-x;
+    background-position: 0px 0px;
+    margin: 0;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 5px;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #c6c6c6;
+    text-shadow: rgba(255,255,255,0.8) 0px 1px 0px;
+}
+#controls .title-bar h3 {
+    font-size: 11px;
+    margin: 0;
+}
+#cssbox, #htmlbox {
+    background-color: #fff;
+}
+#cssbox .content, #htmlbox .content {
+    position: relative;
+}
+.highlighted-editor {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.ace_editor {
+  font-size: 11px;
+	overflow: auto;
+}
+#cssbox {
+  position: absolute;
+  top: 200px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+#htmlbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow: hidden;
+}
+/* jQuery UI Resizable
+----------------------------------*/
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: ns-resize; height: 20px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: ns-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e { cursor: ew-resize; width: 20px; right: -5px; top: 0; height: 100%; }
+.ui-resizable-w { cursor: ew-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}

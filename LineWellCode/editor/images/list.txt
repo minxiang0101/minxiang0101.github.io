@@ -1,0 +1,6 @@
+http://cssdesk.com/images/bg-top-bar.png
+http://cssdesk.com/images/nav-divider.png
+http://cssdesk.com/images/icon-download.png
+http://cssdesk.com/images/bg-blueprint.png
+http://cssdesk.com/images/sprite-toggle.png
+http://cssdesk.com/images/scrubber.png
