@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梅花易数 - 在线卜卦</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #e9e4d8; /* A warm, paper-like background */
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23c9c2b3" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .font-serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        /* Tab styling */
+        .tab-button.active {
+            border-color: #a16207; /* Dark yellow */
+            color: #a16207;
+            background-color: #fefce8; /* Light yellow */
+        }
+
+        /* Yao (line) styles */
+        .yao.yin::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30%;
+            height: 100%;
+            background-color: #f8fafc; /* bg-slate-50 */
+            transform: translate(-50%, -50%);
+        }
+        .yao.changing::before {
+            content: "●";
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #c2410c; /* text-orange-700 */
+        }
+        
+        /* Modal transitions */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .prose-custom p { margin-bottom: 1em; }
+        .prose-custom h3 { margin-top: 1.5em; margin-bottom: 0.5em; font-size: 1.1em; font-weight: 600; }
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-6 max-w-5xl">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 font-serif">梅花易数</h1>
+            <p class="text-lg text-gray-600 mt-2">心念一动，卦象自成</p>
+        </header>
+
+        <!-- Main Card -->
+        <main class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-8">
+            
+            <!-- Step 1: Input Section -->
+            <div id="input-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold font-serif text-gray-700 border-b pb-2 mb-4">第一步：诚心正意</h2>
+                    <input type="text" id="question" placeholder="心中默念问题，可在此记录（选填）" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-700 transition">
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold font-serif text-gray-700 border-b pb-2 mb-4">第二步：选择起卦方式</h2>
+                    
+                    <!-- Method Tabs -->
+                    <div class="flex border-b border-gray-200 mb-4">
+                        <button data-method="time" class="tab-button flex-1 py-3 px-2 text-center font-medium border-b-4 transition-colors duration-300 active">时间起卦</button>
+                        <button data-method="number" class="tab-button flex-1 py-3 px-2 text-center font-medium border-b-4 border-transparent transition-colors duration-300">数字起卦</button>
+                        <button data-method="text" class="tab-button flex-1 py-3 px-2 text-center font-medium border-b-4 border-transparent transition-colors duration-300">文字起卦</button>
+                    </div>
+
+                    <!-- Method Content -->
+                    <div id="method-content" class="p-4 bg-slate-50 rounded-lg min-h-[100px] flex items-center justify-center">
+                        <div id="method-time-content">
+                            <p class="text-center text-gray-600">将以您当前的时间自动起卦。</p>
+                        </div>
+                        <div id="method-number-content" class="hidden w-full">
+                           <div class="flex flex-col sm:flex-row gap-4">
+                                <input type="number" id="num1" placeholder="输入第一个随机数字" class="flex-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-700">
+                                <input type="number" id="num2" placeholder="输入第二个随机数字" class="flex-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-700">
+                           </div>
+                        </div>
+                        <div id="method-text-content" class="hidden w-full">
+                            <input type="text" id="text-input" placeholder="输入任意汉字" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-700">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button id="cast-button" class="px-10 py-4 bg-yellow-800 text-white font-bold rounded-lg shadow-lg hover:bg-yellow-900 transition-all duration-300 transform hover:scale-105">
+                        开始起卦
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-section" class="hidden">
+                <h2 class="text-3xl font-bold font-serif text-center text-gray-800 mb-6">卜卦结果</h2>
+                
+                <!-- Hexagrams Display -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <h3 class="text-xl font-semibold font-serif text-gray-700 mb-3">本卦</h3>
+                        <div id="hexagram-original-image" class="w-24 mx-auto space-y-1.5 space-y-reverse mb-2 flex flex-col-reverse"></div>
+                        <p id="hexagram-original-name" class="font-semibold"></p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <h3 class="text-xl font-semibold font-serif text-gray-700 mb-3">互卦</h3>
+                        <div id="hexagram-mutual-image" class="w-24 mx-auto space-y-1.5 space-y-reverse mb-2 flex flex-col-reverse"></div>
+                        <p id="hexagram-mutual-name" class="font-semibold"></p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg">
+                        <h3 class="text-xl font-semibold font-serif text-gray-700 mb-3">变卦</h3>
+                        <div id="hexagram-changing-image" class="w-24 mx-auto space-y-1.5 space-y-reverse mb-2 flex flex-col-reverse"></div>
+                        <p id="hexagram-changing-name" class="font-semibold"></p>
+                    </div>
+                </div>
+
+                <!-- Interpretation Tabs -->
+                 <div>
+                    <div class="border-b border-gray-200">
+                        <nav id="result-tabs-container" class="-mb-px flex space-x-6" aria-label="Tabs"></nav>
+                    </div>
+                    <div id="result-tab-content" class="mt-6 prose prose-custom max-w-none"></div>
+                </div>
+
+                <div class="text-center mt-8 space-x-4">
+                    <button id="new-divination" class="px-8 py-3 bg-gray-700 text-white font-bold rounded-lg shadow-md hover:bg-gray-800 transition">重新卜卦</button>
+                    <button id="history-button" class="px-8 py-3 bg-white text-gray-700 border border-gray-300 font-bold rounded-lg shadow-md hover:bg-gray-100 transition">查看历史</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- History Modal -->
+    <div id="history-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 opacity-0 invisible">
+        <div class="modal-content bg-white rounded-xl shadow-2xl w-11/12 max-w-2xl transform scale-95">
+            <div class="flex justify-between items-center p-5 border-b">
+                <h2 class="text-2xl font-bold font-serif text-gray-800">卜卦历史</h2>
+                <button class="close-modal-button text-gray-400 hover:text-gray-600">&times;</button>
+            </div>
+            <div id="history-list" class="p-6 max-h-[60vh] overflow-y-auto"></div>
+            <div class="p-4 bg-gray-50 rounded-b-xl text-right">
+                <button id="clear-history-button" class="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition disabled:bg-gray-300">清空历史</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- History Detail Modal -->
+    <div id="history-detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 opacity-0 invisible">
+        <div class="modal-content bg-white rounded-xl shadow-2xl w-11/12 max-w-3xl transform scale-95">
+            <div class="flex justify-between items-center p-5 border-b">
+                <h2 class="text-2xl font-bold font-serif text-gray-800">历史详情</h2>
+                <button class="close-modal-button text-gray-400 hover:text-gray-600">&times;</button>
+            </div>
+            <div id="history-detail-content" class="p-6 max-h-[70vh] overflow-y-auto prose prose-custom max-w-none"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // --- DATA ---
+        const bagua = { 
+            names: ["乾", "兑", "离", "震", "巽", "坎", "艮", "坤"],
+            attributes: ["天", "泽", "火", "雷", "风", "水", "山", "地"],
+            codes: [[1, 1, 1], [1, 1, 0], [1, 0, 1], [1, 0, 0], [0, 1, 1], [0, 1, 0], [0, 0, 1], [0, 0, 0]]
+        };
+        const hexagrams = [
+          {id:1,name:"乾",alias:"乾为天",gua:[1,1,1,1,1,1],description:"元亨利贞",overall:"乾卦代表纯阳刚健之象，表示事物处于强盛发展的阶段。",details:"乾卦象征天，具有刚健、自强不息的特性。六爻皆阳，表示充满活力与创造力，适合开展事业和进取。但需警惕过于刚强可能导致的亢龙有悔。",lines:["初九：潜龙勿用。","九二：见龙在田，利见大人。","九三：君子终日乾乾，夕惕若厉，无咎。","九四：或跃在渊，无咎。","九五：飞龙在天，利见大人。","上九：亢龙有悔。"]},
+          {id:2,name:"坤",alias:"坤为地",gua:[0,0,0,0,0,0],description:"元亨，利牝马之贞",overall:"坤卦代表纯阴柔顺之象，表示包容、承载与滋养。",details:"坤卦象征地，具有厚德载物的特性。六爻皆阴，表示柔顺、包容与承受。适合守成、积累与等待，不宜主动进取。",lines:["初六：履霜，坚冰至。","六二：直方大，不习无不利。","六三：含章可贞，或从王事，无成有终。","六四：括囊，无咎无誉。","六五：黄裳，元吉。","上六：龙战于野，其血玄黄。"]},
+          {id:3,name:"屯",alias:"水雷屯",gua:[0,1,0,1,0,0],description:"元亨利贞，勿用有攸往，利建侯",overall:"屯卦代表初始艰难之象，如同草木初生，充满困难但蕴含生机。",details:"屯卦由坎（水）上震（雷）下组成，象征困难初生。表示开始阶段的艰难，需要坚持不懈，稳固根基，不宜贸然行动。",lines:["初九：磐桓，利居贞，利建侯。","六二：屯如邅如，乘马班如。匪寇婚媾，女子贞不字，十年乃字。","六三：即鹿无虞，惟入于林中，君子几，不如舍，往吝。","六四：乘马班如，求婚媾，往吉，无不利。","九五：屯其膏，小贞吉，大贞凶。","上六：乘马班如，泣血涟如。"]},
+          {id:4,name:"蒙",alias:"山水蒙",gua:[0,0,1,0,1,0],description:"亨。匪我求童蒙，童蒙求我。初筮告，再三渎，渎则不告。利贞",overall:"蒙卦代表蒙昧初启之象，如同幼童需要教育启蒙。",details:"蒙卦由艮（山）上坎（水）下组成，象征蒙昧。表示处于无知蒙昧状态，需要教育启蒙，明辨是非，培养正确方向。",lines:["初六：发蒙，利用刑人，用说桎梏，以往吝。","九二：包蒙吉，纳妇吉，子克家。","六三：勿用取女，见金夫，不有躬，无攸利。","六四：困蒙，吝。","六五：童蒙，吉。","上九：击蒙，不利为寇，利御寇。"]},
+          {id:5,name:"需",alias:"水天需",gua:[0,1,0,1,1,1],description:"有孚，光亨，贞吉。利涉大川",overall:"需卦代表等待之象，如饥渴待食，需要耐心等待时机。",details:"需卦由坎（水）上乾（天）下组成，象征等待。表示当前形势需要等待，不可急躁冒进，须有信心耐心等待适当时机。",lines:["初九：需于郊，利用恒，无咎。","九二：需于沙，小有言，终吉。","九三：需于泥，致寇至。","六四：需于血，出自穴。","九五：需于酒食，贞吉。","上六：入于穴，有不速之客三人来，敬之终吉。"]},
+          {id:6,name:"讼",alias:"天水讼",gua:[1,1,1,0,1,0],description:"有孚，窒惕，中吉，终凶。利见大人，不利涉大川",overall:"讼卦代表争讼之象，表示冲突与争执。",details:"讼卦由乾（天）上坎（水）下组成，象征争讼。表示面临争端冲突，需谨慎处理，寻求公正调解，避免激化矛盾。",lines:["初六：不永所事，小有言，终吉。","九二：不克讼，归而逋，其邑人三百户，无眚。","六三：食旧德，贞厉，终吉，或从王事，无成。","九四：不克讼，复即命，渝安贞，吉。","九五：讼，元吉。","上九：或锡之鞶带，终朝三褫之。"]},
+          {id:7,name:"师",alias:"地水师",gua:[0,0,0,0,1,0],description:"贞，丈人，吉无咎",overall:"师卦代表军队之象，表示组织、纪律与集体行动。",details:"师卦由坤（地）上坎（水）下组成，象征军队。表示需要组织、纪律与正确领导，强调集体行动的重要性，但须谨慎行事。",lines:["初六：师出以律，否臧凶。","九二：在师中，吉无咎，王三锡命。","六三：师或舆尸，凶。","六四：师左次，无咎。","六五：田有禽，利执言，无咎。长子帅师，弟子舆尸，贞凶。","上六：大君有命，开国承家，小人勿用。"]},
+          {id:8,name:"比",alias:"水地比",gua:[0,1,0,0,0,0],description:"吉。原筮，元永贞，无咎。不宁方来，后夫凶",overall:"比卦代表亲比团结之象，表示联合与相互支持。",details:"比卦由坎（水）上坤（地）下组成，象征亲比。表示团结合作，相互支持，选择正确伙伴，建立和谐关系。",lines:["初六：有孚比之，无咎。有孚盈缶，终来有它，吉。","六二：比之自内，贞吉。","六三：比之匪人。","六四：外比之，贞吉。","九五：显比，王用三驱，失前禽，邑人不诫，吉。","上六：比之无首，凶。"]},
+          {id:9,name:"小畜",alias:"风天小畜",gua:[0,1,1,1,1,1],description:"亨。密云不雨，自我西郊",overall:"小畜卦代表小有蓄积之象，表示小有收获但尚需发展。",details:"小畜卦由巽（风）上乾（天）下组成，象征小畜。表示小有积蓄，力量尚小，宜谨慎发展，循序渐进，不可急躁。",lines:["初九：复自道，何其咎，吉。","九二：牵复，吉。","九三：舆说辐，夫妻反目。","六四：有孚，血去惕出，无咎。","九五：有孚挛如，富以其邻。","上九：既雨既处，尚德载，妇贞厉。月几望，君子征凶。"]},
+          {id:10,name:"履",alias:"天泽履",gua:[1,1,1,1,1,0],description:"履虎尾，不咥人，亨",overall:"履卦代表践履之象，表示谨慎行走与处事。",details:"履卦由乾（天）上兑（泽）下组成，象征履行。表示谨慎行事，把握分寸，柔顺而有节制，不逾越礼法。",lines:["初九：素履，往无咎。","九二：履道坦坦，幽人贞吉。","六三：眇能视，跛能履，履虎尾，咥人，凶。武人为于大君。","九四：履虎尾，愬愬，终吉。","九五：夬履，贞厉。","上九：视履考祥，其旋元吉。"]},
+          {id:11,name:"泰",alias:"地天泰",gua:[1,1,1,0,0,0],description:"小往大来，吉亨",overall:"泰卦象征通达，阴阳交感，万物亨通，吉祥顺利。",details:"泰卦由坤（地）上乾（天）下组成。地气上升，天气下降，阴阳二气交合，象征天地交泰，万物畅通。此时君主应顺应天道，辅佐天地化生万物，使百姓安居乐业。此卦启示因时而变，把握时机，促成和谐通达的局面。",lines:["初九：拔茅茹，以其汇，征吉。","九二：包荒，用冯河，不遐遗，朋亡，得尚于中行。","九三：无平不陂，无往不复。艰贞无咎。勿恤其孚，于食有福。","六四：翩翩不富，以其邻，不戒以孚。","六五：帝乙归妹，以祉元吉。","上六：城复于隍，勿用师。自邑告命，贞吝。"]},
+          {id:12,name:"否",alias:"天地否",gua:[0,0,0,1,1,1],description:"否之匪人，不利君子贞，大往小来",overall:"否卦象征闭塞不通，阴阳不交，万物不通，诸事不顺。",details:"否卦由乾（天）上坤（地）下组成。天气上升，地气下降，阴阳不交，万物闭塞。此卦与泰卦相反，表示天地不交，阴阳隔绝，万事不顺，小人得势，君子退隐。在此时期应当谨慎守正，避免妄动，等待时机。",lines:["初六：拔茅茹，以其汇，贞吉，亨。","六二：包承，小人吉，大人否，亨。","六三：包羞。","九四：有命无咎，畴离祉。","九五：休否，大人吉，其亡其亡，系于苞桑。","上九：倾否，先否后喜。"]},
+          {id:13,name:"同人",alias:"天火同人",gua:[1,1,1,1,0,1],description:"同人于野，亨。利涉大川，利君子贞",overall:"同人卦象征团结和睦，志同道合，共同奋斗。",details:"同人卦由乾（天）上离（火）下组成。天上有火，普照大地，万物同受其光。此卦表示人与人之间的和谐团结，志同道合，共同奋斗。适合建立广泛联系，开展合作，但需坚守正道，防止结党营私。",lines:["初九：同人于门，无咎。","六二：同人于宗，吝。","九三：伏戎于莽，升其高陵，三岁不兴。","九四：乘其墉，弗克攻，吉。","九五：同人先号咷而后笑，大师克相遇。","上九：同人于郊，无悔。"]},
+          {id:14,name:"大有",alias:"火天大有",gua:[1,0,1,1,1,1],description:"元亨",overall:"大有卦象征丰盛盈满，物质精神俱丰，大有可为。",details:"大有卦由离（火）上乾（天）下组成。火在天上，光明普照，万物生长。此卦表示丰盛盈满，物质精神俱丰，适合开展事业，但需谦虚谨慎，防止骄傲自满。",lines:["初九：无交害，匪咎，艰则无咎。","九二：大车以载，有攸往，无咎。","九三：公用亨于天子，小人弗克。","九四：匪其彭，无咎。","六五：厥孚交如，威如，吉。","上九：自天佑之，吉无不利。"]},
+          {id:15,name:"谦",alias:"地山谦",gua:[0,0,1,0,0,0],description:"亨，君子有终",overall:"谦卦象征谦虚谨慎，内敛自守，德行高尚。",details:"谦卦由坤（地）上艮（山）下组成。山在地中，不显露高大。此卦表示谦虚谨慎，内敛自守，德行高尚。谦虚的人能得到众人拥戴，事业亨通，但需持之以恒，始终如一。",lines:["初六：谦谦君子，用涉大川，吉。","六二：鸣谦，贞吉。","九三：劳谦，君子有终，吉。","六四：无不利，撝谦。","六五：不富以其邻，利用侵伐，无不利。","上六：鸣谦，利用行师，征邑国。"]},
+          {id:16,name:"豫",alias:"雷地豫",gua:[0,0,0,1,0,0],description:"利建侯行师",overall:"豫卦象征喜悦欢乐，顺利亨通，万物生长。",details:"豫卦由震（雷）上坤（地）下组成。春雷响起，大地震动，万物苏醒。此卦表示喜悦欢乐，顺利亨通，适合建立功业，但需防止过度放纵，保持警惕。",lines:["初六：鸣豫，凶。","六二：介于石，不终日，贞吉。","六三：盱豫，悔。迟有悔。","九四：由豫，大有得。勿疑，朋盍簪。","六五：贞疾，恒不死。","上六：冥豫，成有渝，无咎。"]},
+          {id:17,name:"随",alias:"泽雷随",gua:[1,1,0,1,0,0],description:"元亨利贞，无咎",overall:"随卦象征顺从随和，适应变化，随时而动。",details:"随卦由兑（泽）上震（雷）下组成。雷声响起，泽水随之震荡。此卦表示顺从随和，适应变化，随时而动。适合跟随时势，顺应变化，但需守正道，不可盲从。",lines:["初九：官有渝，贞吉。出门交有功。","六二：系小子，失丈夫。","六三：系丈夫，失小子。随有求得，利居贞。","九四：随有获，贞凶。有孚在道，以明，何咎。","九五：孚于嘉，吉。","上六：拘系之，乃从维之。王用亨于西山。"]},
+          {id:18,name:"蛊",alias:"山风蛊",gua:[0,1,1,0,0,1],description:"元亨，利涉大川。先甲三日，后甲三日",overall:"蛊卦象征整治混乱，革除弊端，重新开始。",details:"蛊卦由艮（山）上巽（风）下组成。山下起风，吹散污浊。此卦表示整治混乱，革除弊端，重新开始。适合整顿腐败，革新变革，但需谨慎行事，循序渐进。",lines:["初六：干父之蛊，有子，考无咎，厉终吉。","九二：干母之蛊，不可贞。","九三：干父之蛊，小有悔，无大咎。","六四：裕父之蛊，往见吝。","六五：干父之蛊，用誉。","上九：不事王侯，高尚其事。"]},
+          {id:19,name:"临",alias:"地泽临",gua:[0,0,0,1,1,0],description:"元亨利贞，至于八月有凶",overall:"临卦象征监察临视，管理治理，关怀体察。",details:"临卦由坤（地）上兑（泽）下组成。泽水润泽大地，滋养万物。此卦表示监察临视，管理治理，关怀体察。适合治理国家，管理事务，但需公正廉明，防止专横。",lines:["初九：咸临，贞吉。","九二：咸临，吉无不利。","六三：甘临，无攸利。既忧之，无咎。","六四：至临，无咎。","六五：知临，大君之宜，吉。","上六：敦临，吉无咎。"]},
+          {id:20,name:"观",alias:"风地观",gua:[0,1,1,0,0,0],description:"盥而不荐，有孚颙若",overall:"观卦象征观察审视，明察秋毫，洞察事理。",details:"观卦由巽（风）上坤（地）下组成。风行地上，观察万物。此卦表示观察审视，明察秋毫，洞察事理。适合观察形势，审时度势，但需客观公正，不可主观臆断。",lines:["初六：童观，小人无咎，君子吝。","六二：窥观，利女贞。","六三：观我生，进退。","六四：观国之光，利用宾于王。","九五：观我生，君子无咎。","上九：观其生，君子无咎。"]},
+          {id:21,name:"噬嗑",alias:"火雷噬嗑",gua:[1,0,1,1,0,0],description:"亨，利用狱",overall:"噬嗑卦象征咬合决断，明辨是非，严明执法。",details:"噬嗑卦由离（火）上震（雷）下组成。雷电交加，闪电照亮。此卦表示咬合决断，明辨是非，严明执法。适合断案决狱，明辨是非，但需公正严明，不可偏私。",lines:["初九：屦校灭趾，无咎。","六二：噬肤灭鼻，无咎。","六三：噬腊肉，遇毒。小吝，无咎。","九四：噬干胏，得金矢，利艰贞，吉。","六五：噬干肉，得黄金，贞厉，无咎。","上九：何校灭耳，凶。"]},
+          {id:22,name:"贲",alias:"山火贲",gua:[1,0,1,0,0,1],description:"亨，小利有攸往",overall:"贲卦象征文饰装扮，美化修饰，文质彬彬。",details:"贲卦由艮（山）上离（火）下组成。山上有火，照亮装饰。此卦表示文饰装扮，美化修饰，文质彬彬。适合修饰美化，注重形式，但需内外兼修，不可徒有其表。",lines:["初九：贲其趾，舍车而徒。","六二：贲其须。","九三：贲如濡如，永贞吉。","六四：贲如皤如，白马翰如，匪寇婚媾。","六五：贲于丘园，束帛戋戋，吝，终吉。","上九：白贲，无咎。"]},
+          {id:23,name:"剥",alias:"山地剥",gua:[0,0,1,0,0,0],description:"不利有攸往",overall:"剥卦象征剥落衰败，渐渐消亡，日渐衰退。",details:"剥卦由艮（山）上坤（地）下组成。山崩地陷，万物剥落。此卦表示剥落衰败，渐渐消亡，日渐衰退。处于此时应当谨慎退守，等待时机，不宜妄动。",lines:["初六：剥床以足，蔑贞凶。","六二：剥床以辨，蔑贞凶。","六三：剥之，无咎。","六四：剥床以肤，凶。","六五：贯鱼，以宫人宠，无不利。","上九：硕果不食，君子得舆，小人剥庐。"]},
+          {id:24,name:"复",alias:"地雷复",gua:[0,0,0,0,1,0],description:"亨，出入无疾，朋来无咎。反复其道，七日来复，利有攸往",overall:"复卦象征返回复归，重新开始，转危为安。",details:"复卦由坤（地）上震（雷）下组成。春雷响起，万物复苏。此卦表示返回复归，重新开始，转危为安。适合重新开始，东山再起，但需谨慎行事，循序渐进。",lines:["初九：不远复，无祗悔，元吉。","六二：休复，吉。","六三：频复，厉无咎。","六四：中行独复。","六五：敦复，无悔。","上六：迷复，凶，有灾眚。用行师，终有大败，以其国君凶，至于十年不克征。"]},
+          {id:25,name:"无妄",alias:"天雷无妄",gua:[0,0,1,1,1,1],description:"元亨利贞，其匪正有眚，不利有攸往",overall:"无妄卦象征无妄自然，不妄为，守正道。",details:"无妄卦由乾（天）上震（雷）下组成。雷声响亮，震动天地。此卦表示无妄自然，不妄为，守正道。适合遵循自然规律，不妄为妄动，但需谨慎守正，不可违背常理。",lines:["初九：无妄，往吉。","六二：不耕获，不菑畲，则利有攸往。","六三：无妄之灾，或系之牛，行人之得，邑人之灾。","九四：可贞，无咎。","九五：无妄之疾，勿药有喜。","上九：无妄，行有眚，无攸利。"]},
+          {id:26,name:"大畜",alias:"山天大畜",gua:[1,1,1,0,0,1],description:"利贞，不家食吉，利涉大川",overall:"大畜卦象征蓄积能量，积蓄德行，厚积薄发。",details:"大畜卦由艮（山）上乾（天）下组成。山下有天，蓄积能量。此卦表示蓄积能量，积蓄德行，厚积薄发。适合积累力量，储备资源，但需适时而动，不可过度保守。",lines:["初九：有厉，利已。","九二：舆说輹。","九三：良马逐，利艰贞。曰闲舆卫，利有攸往。","六四：童牛之牿，元吉。","六五：豮豕之牙，吉。","上九：何天之衢，亨。"]},
+          {id:27,name:"颐",alias:"山雷颐",gua:[1,0,0,0,0,1],description:"贞吉，观颐，自求口实",overall:"颐卦象征养育滋补，饮食营养，修身养性。",details:"颐卦由艮（山）上震（雷）下组成。山下有雷，震动发声。此卦表示养育滋补，饮食营养，修身养性。适合调养身心，注重营养，但需适度适量，不可过度贪食。",lines:["初九：舍尔灵龟，观我朵颐，凶。","六二：颠颐，拂经，于丘颐，征凶。","六三：拂颐，贞凶，十年勿用，无攸利。","六四：颠颐，吉，虎视眈眈，其欲逐逐，无咎。","六五：拂经，居贞吉，不可涉大川。","上九：由颐，厉吉，利涉大川。"]},
+          {id:28,name:"大过",alias:"泽风大过",gua:[0,1,1,1,1,0],description:"栋桡，利有攸往，亨",overall:"大过卦象征过度超常，非常规，突破常规。",details:"大过卦由兑（泽）上巽（风）下组成。泽水浸风，过度泛滥。此卦表示过度超常，非常规，突破常规。适合突破常规，创新发展，但需谨慎行事，防止过度。",lines:["初六：藉用白茅，无咎。","九二：枯杨生稊，老夫得其女妻，无不利。","九三：栋桡，凶。","九四：栋隆，吉，有它吝。","九五：枯杨生华，老妇得其士夫，无咎无誉。","上六：过涉灭顶，凶，无咎。"]},
+          {id:29,name:"坎",alias:"坎为水",gua:[0,1,0,0,1,0],description:"有孚，维心亨，行有尚",overall:"坎卦象征险难困境，重重险阻，身陷险境。",details:"坎卦由坎（水）上坎（水）下组成。水流湍急，险象环生。此卦表示险难困境，重重险阻，身陷险境。处于此时应当谨慎行事，坚守正道，勇往直前。",lines:["初六：习坎，入于坎窞，凶。","九二：坎有险，求小得。","六三：来之坎坎，险且枕，入于坎窞，勿用。","六四：樽酒簋贰，用缶，纳约自牖，终无咎。","九五：坎不盈，只既平，无咎。","上六：系用徽纆，寘于丛棘，三岁不得，凶。"]},
+          {id:30,name:"离",alias:"离为火",gua:[1,0,1,1,0,1],description:"利贞，亨，畜牝牛，吉",overall:"离卦象征光明显耀，明察秋毫，文明礼仪。",details:"离卦由离（火）上离（火）下组成。火焰炽盛，光明显耀。此卦表示光明显耀，明察秋毫，文明礼仪。适合明辨是非，光明磊落，但需防止过度炽热，导致燥烈。",lines:["初九：履错然，敬之无咎。","六二：黄离，元吉。","九三：日昃之离，不鼓缶而歌，则大耋之嗟，凶。","九四：突如其来如，焚如，死如，弃如。","六五：出涕沱若，戚嗟若，吉。","上九：王用出征，有嘉折首，获匪其丑，无咎。"]},
+          {id:31,name:"咸",alias:"泽山咸",gua:[0,0,1,1,1,0],description:"亨，利贞，取女吉",overall:"咸卦象征感应交感，相互影响，情投意合。",details:"咸卦由兑（泽）上艮（山）下组成。泽水滋润山岳，相互感应。此卦表示感应交感，相互影响，情投意合。适合建立感情，沟通交流，但需真诚相待，不可虚伪。",lines:["初六：咸其拇。","六二：咸其腓，凶，居吉。","九三：咸其股，执其随，往吝。","九四：贞吉，悔亡，憧憧往来，朋从尔思。","九五：咸其脢，无悔。","上六：咸其辅颊舌。"]},
+          {id:32,name:"恒",alias:"雷风恒",gua:[0,1,1,1,0,0],description:"亨，无咎，利贞，利有攸往",overall:"恒卦象征持久恒常，坚持不懈，长久稳定。",details:"恒卦由震（雷）上巽（风）下组成。雷声震动，风行不止。此卦表示持久恒常，坚持不懈，长久稳定。适合长期坚持，稳定发展，但需与时俱进，不可固步自封。",lines:["初六：浚恒，贞凶，无攸利。","九二：悔亡。","九三：不恒其德，或承之羞，贞吝。","九四：田无禽。","六五：恒其德，贞，妇人吉，夫子凶。","上六：振恒，凶。"]},
+          {id:33,name:"遁",alias:"天山遁",gua:[0,0,1,1,1,1],description:"亨，小利贞",overall:"遁卦象征退避遁隐，明哲保身，韬光养晦。",details:"遁卦由乾（天）上艮（山）下组成。天在山后，光明隐退。此卦表示退避遁隐，明哲保身，韬光养晦。适合适时退让，避开锋芒，但需有所准备，伺机而动。",lines:["初六：遁尾，厉，勿用有攸往。","六二：执之用黄牛之革，莫之胜说。","九三：系遁，有疾厉，畜臣妾吉。","九四：好遁，君子吉，小人否。","九五：嘉遁，贞吉。","上九：肥遁，无不利。"]},
+          {id:34,name:"大壮",alias:"雷天大壮",gua:[1,1,1,1,0,0],description:"利贞",overall:"大壮卦象征强大壮盛，刚健有力，气势磅礴。",details:"大壮卦由震（雷）上乾（天）下组成。雷声震天，威力强大。此卦表示强大壮盛，刚健有力，气势磅礴。适合大展宏图，奋发有为，但需谨慎行事，防止过度。",lines:["初九：壮于趾，征凶，有孚。","九二：贞吉。","九三：小人用壮，君子用罔，贞厉。立于巅，羝羊触藩，羸其角。","九四：贞吉悔亡，藩决不羸，壮于大舆之輹。","六五：丧羊于易，无悔。","上六：羝羊触藩，不能退，不能遂，无攸利，艰则吉。"]},
+          {id:35,name:"晋",alias:"火地晋",gua:[0,0,0,1,0,1],description:"康侯用锡马蕃庶，昼日三接",overall:"晋卦象征前进晋升，步步高升，不断进步。",details:"晋卦由离（火）上坤（地）下组成。太阳升起，光明普照。此卦表示前进晋升，步步高升，不断进步。适合积极进取，升迁晋级，但需循序渐进，不可急躁冒进。",lines:["初六：晋如，摧如，贞吉。罔孚，裕无咎。","六二：晋如，愁如，贞吉。受兹介福，于其王母。","六三：众允，悔亡。","九四：晋如硕鼠，贞厉。","六五：悔亡，失得勿恤，往吉，无不利。","上九：晋其角，维用伐邑，厉吉无咎，贞吝。"]},
+          {id:36,name:"明夷",alias:"地火明夷",gua:[1,0,1,0,0,0],description:"利艰贞",overall:"明夷卦象征光明受损，蒙受伤害，隐忍不发。",details:"明夷卦由坤（地）上离（火）下组成。太阳入地，光明受损。此卦表示光明受损，蒙受伤害，隐忍不发。处于此时应当隐忍不发，韬光养晦，等待时机。",lines:["初九：明夷于飞，垂其翼。君子于行，三日不食，有攸往，主人有言。","六二：明夷，夷于左股，用拯马壮，吉。","九三：明夷于南狩，得其大首，不可疾贞。","六四：入于左腹，获明夷之心，出于门庭。","六五：箕子之明夷，利贞。","上六：不明晦，初登于天，后入于地。"]},
+          {id:37,name:"家人",alias:"风火家人",gua:[1,0,1,0,1,1],description:"利女贞",overall:"家人卦象征家庭和睦，家族团结，内外和谐。",details:"家人卦由巽（风）上离（火）下组成。风助火势，温暖家庭。此卦表示家庭和睦，家族团结，内外和谐。适合处理家庭事务，和睦相处，但需严以律己，宽以待人。",lines:["初九：闲有家，悔亡。","六二：无攸遂，在中馈，贞吉。","九三：家人嗃嗃，悔厉吉，妇子嘻嘻，终吝。","六四：富家，大吉。","九五：王假有家，勿恤，吉。","上九：有孚威如，终吉。"]},
+          {id:38,name:"睽",alias:"火泽睽",gua:[1,1,0,1,0,1],description:"小事吉",overall:"睽卦象征乖违背离，不同对立，相互睽异。",details:"睽卦由离（火）上兑（泽）下组成。火在水上，水火不容。此卦表示乖违背离，不同对立，相互睽异。处于此时应当求同存异，和而不同，但需谨慎行事，防止冲突。",lines:["初九：悔亡，丧马勿逐，自复，见恶人，无咎。","九二：遇主于巷，无咎。","六三：见舆曳，其牛掣，其人天且劓，无初有终。","九四：睽孤，遇元夫，交孚，厉无咎。","六五：悔亡，厥宗噬肤，往何咎。","上九：睽孤，见豕负涂，载鬼一车，先张之弧，后说之弧，匪寇婚媾，往遇雨则吉。"]},
+          {id:39,name:"蹇",alias:"水山蹇",gua:[0,0,1,0,1,0],description:"利西南，不利东北，利见大人，贞吉",overall:"蹇卦象征跛行艰难，险阻重重，进退维谷。",details:"蹇卦由坎（水）上艮（山）下组成。山上有水，行走艰难。此卦表示跛行艰难，险阻重重，进退维谷。处于此时应当谨慎行事，量力而行，但需坚守正道，不可妄动。",lines:["初六：往蹇，来誉。","六二：王臣蹇蹇，匪躬之故。","九三：往蹇，来反。","六四：往蹇，来连。","九五：大蹇，朋来。","上六：往蹇，来硕，吉，利见大人。"]},
+          {id:40,name:"解",alias:"雷水解",gua:[0,1,0,1,0,0],description:"利西南，无所往，其来复吉，有攸往，夙吉",overall:"解卦象征解除困难，排除障碍，化险为夷。",details:"解卦由震（雷）上坎（水）下组成。雷声震动，冰雪消融。此卦表示解除困难，排除障碍，化险为夷。适合解决问题，排除障碍，但需循序渐进，不可操之过急。",lines:["初六：无咎。","九二：田获三狐，得黄矢，贞吉。","六三：负且乘，致寇至，贞吝。","九四：解而拇，朋至斯孚。","六五：君子维有解，吉，有孚于小人。","上六：公用射隼于高墉之上，获之，无不利。"]},
+          {id:41,name:"损",alias:"山泽损",gua:[1,1,0,0,0,1],description:"有孚，元吉，无咎，可贞，利有攸往，曷之用，二簋可用享",overall:"损卦象征损益取舍，有所损失，有所得益。",details:"损卦由艮（山）上兑（泽）下组成。山高水下，高处损益低处。此卦表示损益取舍，有所损失，有所得益。适合适当舍弃，有所取舍，但需适度适量，不可过度。",lines:["初九：已事遄往，无咎，酌损之。","九二：利贞，征凶，弗损益之。","六三：三人行，则损一人，一人行，则得其友。","六四：损其疾，使遄有喜，无咎。","六五：或益之，十朋之龟弗克违，元吉。","上九：弗损益之，无咎，贞吉，利有攸往，得臣无家。"]},
+          {id:42,name:"益",alias:"风雷益",gua:[1,0,0,0,1,1],description:"利有攸往，利涉大川",overall:"益卦象征增益有利，获得好处，利益增长。",details:"益卦由巽（风）上震（雷）下组成。风雷相助，万物生长。此卦表示增益有利，获得好处，利益增长。适合积极进取，开拓发展，但需适度适量，不可贪得无厌。",lines:["初九：利用为大作，元吉，无咎。","六二：或益之，十朋之龟弗克违，永贞吉。王用享于帝，吉。","六三：益之用凶事，无咎。有孚中行，告公用圭。","六四：中行，告公从，利用为依迁国。","九五：有孚惠心，勿问元吉。有孚惠我德。","上九：莫益之，或击之，立心勿恒，凶。"]},
+          {id:43,name:"夬",alias:"泽天夬",gua:[1,1,1,1,1,0],description:"扬于王庭，孚号，有厉，告自邑，不利即戎，利有攸往",overall:"夬卦象征决断果断，坚决果敢，破除阻碍。",details:"夬卦由兑（泽）上乾（天）下组成。泽水干涸，决断而行。此卦表示决断果断，坚决果敢，破除阻碍。适合果断决策，坚决行动，但需谨慎行事，防止过度。",lines:["初九：壮于前趾，往不胜为咎。","九二：惕号，莫夜有戎，勿恤。","九三：壮于頄，有凶。君子夬夬，独行遇雨，若濡有愠，无咎。","九四：臀无肤，其行次且，牵羊悔亡，闻言不信。","九五：苋陆夬夬，中行无咎。","上六：无号，终有凶。"]},
+          {id:44,name:"姤",alias:"天风姤",gua:[0,1,1,1,1,1],description:"女壮，勿用取女",overall:"姤卦象征偶遇相遇，邂逅相逢，意外相会。",details:"姤卦由乾（天）上巽（风）下组成。天下有风，吹拂万物。此卦表示偶遇相遇，邂逅相逢，意外相会。适合把握机遇，顺势而为，但需谨慎行事，防止错失良机。",lines:["初六：系于金柅，贞吉，有攸往，见凶，羸豕踟躅。","九二：包有鱼，无咎，不利宾。","九三：臀无肤，其行次且，厉，无大咎。","九四：包无鱼，起凶。","九五：以杞包瓜，含章，有陨自天。","上九：姤其角，吝，无咎。"]},
+          {id:45,name:"萃",alias:"泽地萃",gua:[0,0,0,1,1,0],description:"亨，王假有庙，利见大人，亨，利贞，用大牲吉，利有攸往",overall:"萃卦象征聚集会合，汇聚一堂，群策群力。",details:"萃卦由兑（泽）上坤（地）下组成。泽水汇聚大地，万物聚集。此卦表示聚集会合，汇聚一堂，群策群力。适合团结合作，集思广益，但需协调一致，防止纷争。",lines:["初六：有孚不终，乃乱乃萃，若号，一握为笑，勿恤，往无咎。","六二：引吉，无咎，孚乃利用禴。","六三：萃如，嗟如，无攸利，往无咎，小吝。","九四：大吉，无咎。","九五：萃有位，无咎。匪孚，元永贞，悔亡。","上六：赍咨涕洟，无咎。"]},
+          {id:46,name:"升",alias:"地风升",gua:[0,1,1,0,0,0],description:"元亨，用见大人，勿恤，南征吉",overall:"升卦象征上升提高，步步高升，蒸蒸日上。",details:"升卦由坤（地）上巽（风）下组成。风行地上，土随风升。此卦表示上升提高，步步高升，蒸蒸日上。适合积极进取，向上发展，但需循序渐进，不可急躁冒进。",lines:["初六：允升，大吉。","九二：孚乃利用禴，无咎。","九三：升虚邑。","六四：王用亨于岐山，吉，无咎。","六五：贞吉，升阶。","上六：冥升，利于不息之贞。"]},
+          {id:47,name:"困",alias:"泽水困",gua:[0,1,0,1,1,0],description:"亨，贞，大人吉，无咎，有言不信",overall:"困卦象征困境艰难，受困受限，处境窘迫。",details:"困卦由兑（泽）上坎（水）下组成。泽水干涸，困难重重。此卦表示困境艰难，受困受限，处境窘迫。处于此时应当坚守正道，忍耐坚持，等待时机。",lines:["初六：臀困于株木，入于幽谷，三岁不见。","九二：困于酒食，朱绂方来，利用亨祀，征凶，无咎。","六三：困于石，据于蒺藜，入于其宫，不见其妻，凶。","九四：来徐徐，困于金车，吝，有终。","九五：劓刖，困于赤绂，乃徐有说，利用祭祀。","上六：困于葛藟，于臲卼，曰动悔，有悔，征吉。"]},
+          {id:48,name:"井",alias:"水风井",gua:[0,1,1,0,1,0],description:"改邑不改井，无丧无得，往来井井，汔至，亦未繘井，羸其瓶，凶",overall:"井卦象征汲取供给，滋养万物，源源不断。",details:"井卦由坎（水）上巽（风）下组成。井水汲出，滋养万物。此卦表示汲取供给，滋养万物，源源不断。适合开发资源，造福大众，但需有序取用，不可竭泽而渔。",lines:["初六：井泥不食，旧井无禽。","九二：井谷射鲋，瓮敝漏。","九三：井渫不食，为我心恻，可用汲，王明，并受其福。","六四：井甃，无咎。","九五：井冽，寒泉食。","上六：井收勿幕，有孚元吉。"]},
+          {id:49,name:"革",alias:"泽火革",gua:[1,0,1,1,1,0],description:"巳日乃孚，元亨利贞，悔亡",overall:"革卦象征变革改革，脱胎换骨，革故鼎新。",details:"革卦由兑（泽）上离（火）下组成。泽水干涸，烈火燃烧。此卦表示变革改革，脱胎换骨，革故鼎新。适合改革创新，推陈出新，但需循序渐进，不可操之过急。",lines:["初九：巩用黄牛之革。","六二：巳日乃革之，征吉，无咎。","九三：征凶，贞厉，革言三就，有孚。","九四：悔亡，有孚改命，吉。","九五：大人虎变，未占有孚。","上六：君子豹变，小人革面，征凶，居贞吉。"]},
+          {id:50,name:"鼎",alias:"火风鼎",gua:[0,1,1,1,0,1],description:"元吉，亨",overall:"鼎卦象征鼎新革故，承上启下，调和阴阳。",details:"鼎卦由离（火）上巽（风）下组成。风助火势，烹饪食物。此卦表示鼎新革故，承上启下，调和阴阳。适合革新创造，承前启后，但需稳重行事，不可轻举妄动。",lines:["初六：鼎颠趾，利出否，得妾以其子，无咎。","九二：鼎有实，我仇有疾，不我能即，吉。","九三：鼎耳革，其行塞，雉膏不食，方雨亏悔，终吉。","九四：鼎折足，覆公餗，其形渥，凶。","六五：鼎黄耳，金铉，利贞。","上九：鼎玉铉，大吉，无不利。"]},
+          {id:51,name:"震",alias:"震为雷",gua:[1,0,0,1,0,0],description:"亨，震来虩虩，笑言哑哑，震惊百里，不丧匕鬯",overall:"震卦象征震动惊惧，雷霆万钧，惊天动地。",details:"震卦由震（雷）上震（雷）下组成。雷声轰鸣，震撼大地。此卦表示震动惊惧，雷霆万钧，惊天动地。处于此时应当敬畏自然，谨慎行事，但需勇往直前，不可畏缩不前。",lines:["初九：震来虩虩，后笑言哑哑，吉。","六二：震来厉，亿丧贝，跻于九陵，勿逐，七日得。","六三：震苏苏，震行无眚。","九四：震遂泥。","六五：震往来厉，亿无丧，有事。","上六：震索索，视矍矍，征凶。震不于其躬，于其邻，无咎。婚媾有言。"]},
+          {id:52,name:"艮",alias:"艮为山",gua:[0,0,1,0,0,1],description:"艮其背，不获其身，行其庭，不见其人，无咎",overall:"艮卦象征止而不行，稳重安静，固守不动。",details:"艮卦由艮（山）上艮（山）下组成。山峰重叠，高耸不动。此卦表示止而不行，稳重安静，固守不动。适合停止前进，固守阵地，但需适时而动，不可一味固执。",lines:["初六：艮其趾，无咎，利永贞。","六二：艮其腓，不拯其随，其心不快。","九三：艮其限，列其夤，厉熏心。","六四：艮其身，无咎。","六五：艮其辅，言有序，悔亡。","上九：敦艮，吉。"]},
+          {id:53,name:"渐",alias:"风山渐",gua:[0,0,1,0,1,1],description:"女归吉，利贞",overall:"渐卦象征渐进渐行，循序渐进，稳步前行。",details:"渐卦由巽（风）上艮（山）下组成。风吹山上，渐渐深入。此卦表示渐进渐行，循序渐进，稳步前行。适合稳步前进，循序渐进，但需持之以恒，不可半途而废。",lines:["初六：鸿渐于干，小子厉，有言，无咎。","六二：鸿渐于磐，饮食衎衎，吉。","九三：鸿渐于陆，夫征不复，妇孕不育，凶，利御寇。","六四：鸿渐于木，或得其桷，无咎。","九五：鸿渐于陵，妇三岁不孕，终莫之胜，吉。","上九：鸿渐于陆，其羽可用为仪，吉。"]},
+          {id:54,name:"归妹",alias:"雷泽归妹",gua:[1,1,0,1,0,0],description:"征凶，无攸利",overall:"归妹卦象征少女出嫁，婚姻嫁娶，喜结良缘。",details:"归妹卦由震（雷）上兑（泽）下组成。雷声震动，泽水欢悦。此卦表示少女出嫁，婚姻嫁娶，喜结良缘。适合婚姻嫁娶，喜结良缘，但需慎重选择，不可草率行事。",lines:["初九：归妹以娣，跛能履，征吉。","九二：眇能视，利幽人之贞。","六三：归妹以须，反归以娣。","九四：归妹愆期，迟归有时。","六五：帝乙归妹，其君之袂，不如其娣之袂良，月几望，吉。","上六：女承筐无实，士刲羊无血，无攸利。"]},
+          {id:55,name:"丰",alias:"雷火丰",gua:[1,0,1,1,0,0],description:"亨，王假之，勿忧，宜日中",overall:"丰卦象征丰盛茂盛，盛大丰满，繁荣昌盛。",details:"丰卦由震（雷）上离（火）下组成。雷电交加，烈火燃烧。此卦表示丰盛茂盛，盛大丰满，繁荣昌盛。适合开展事业，大展宏图，但需谨慎行事，防止物极必反。",lines:["初九：遇其配主，虽旬无咎，往有尚。","六二：丰其蔀，日中见斗，往得疑疾，有孚发若，吉。","九三：丰其沛，日中见沫，折其右肱，无咎。","九四：丰其蔀，日中见斗，遇其夷主，吉。","六五：来章，有庆誉，吉。","上六：丰其屋，蔀其家，窥其户，阒其无人，三岁不见，凶。"]},
+          {id:56,name:"旅",alias:"火山旅",gua:[0,0,1,1,0,1],description:"小亨，旅贞吉",overall:"旅卦象征旅行漂泊，行走不定，客居他乡。",details:"旅卦由离（火）上艮（山）下组成。火焰燃烧，无定所居。此卦表示旅行漂泊，行走不定，客居他乡。处于此时应当谨慎行事，安分守己，但需随机应变，不可固执己见。",lines:["初六：旅琐琐，斯其所取灾。","六二：旅即次，怀其资，得童仆贞。","九三：旅焚其次，丧其童仆，贞厉。","九四：旅于处，得其资斧，我心不快。","六五：射雉，一矢亡，终以誉命。","上九：鸟焚其巢，旅人先笑后号啕，丧牛于易，凶。"]},
+          {id:57,name:"巽",alias:"巽为风",gua:[0,1,1,0,1,1],description:"小亨，利有攸往，利见大人",overall:"巽卦象征顺从柔顺，随风而行，谦逊恭顺。",details:"巽卦由巽（风）上巽（风）下组成。风行不止，柔顺无形。此卦表示顺从柔顺，随风而行，谦逊恭顺。适合顺应时势，随机应变，但需有所原则，不可一味顺从。",lines:["初六：进退，利武人之贞。","九二：巽在床下，用史巫纷若，吉，无咎。","九三：频巽，吝。","六四：悔亡，田获三品。","九五：贞吉，悔亡，无不利，无初有终，先庚三日，后庚三日，吉。","上六：巽在床下，丧其资斧，贞凶。"]},
+          {id:58,name:"兑",alias:"兑为泽",gua:[1,1,0,1,1,0],description:"亨，利贞",overall:"兑卦象征喜悦欢乐，愉快和悦，欢欣鼓舞。",details:"兑卦由兑（泽）上兑（泽）下组成。泽水澄澈，喜悦欢乐。此卦表示喜悦欢乐，愉快和悦，欢欣鼓舞。适合开展交流，和谐相处，但需真诚相待，不可虚伪做作。",lines:["初九：和兑，吉。","九二：孚兑，吉，悔亡。","六三：来兑，凶。","九四：商兑未宁，介疾有喜。","九五：孚于剥，有厉。","上六：引兑。"]},
+          {id:59,name:"涣",alias:"风水涣",gua:[0,1,0,0,1,1],description:"亨，王假有庙，利涉大川，利贞",overall:"涣卦象征分散涣散，消散离析，涣然冰释。",details:"涣卦由巽（风）上坎（水）下组成。风吹水面，消散离析。此卦表示分散涣散，消散离析，涣然冰释。适合解决纷争，化解矛盾，但需有所节制，防止过度分散。",lines:["初六：用拯马壮，吉。","九二：涣奔其机，悔亡。","六三：涣其躬，无悔。","六四：涣其群，元吉。涣有丘，匪夷所思。","九五：涣汗其大号，涣王居，无咎。","上九：涣其血，去逖出，无咎。"]},
+          {id:60,name:"节",alias:"水泽节",gua:[1,1,0,0,1,0],description:"亨，苦节不可贞",overall:"节卦象征节制节约，适度适中，有节有度。",details:"节卦由坎（水）上兑（泽）下组成。水注入泽，节制适度。此卦表示节制节约，适度适中，有节有度。适合适度节制，量力而行，但需适可而止，不可过度节制。",lines:["初九：不出户庭，无咎。","九二：不出门庭，凶。","六三：不节若，则嗟若，无咎。","六四：安节，吉。","九五：甘节，吉，往有尚。","上六：苦节，贞凶，悔亡。"]},
+          {id:61,name:"中孚",alias:"风泽中孚",gua:[1,1,0,0,1,1],description:"豚鱼吉，利涉大川，利贞",overall:"中孚卦象征诚信忠诚，诚实不欺，信守承诺。",details:"中孚卦由巽（风）上兑（泽）下组成。风行水上，诚信感通。此卦表示诚信忠诚，诚实不欺，信守承诺。适合建立信任，坦诚相待，但需言行一致，不可言而无信。",lines:["初九：虞吉，有它不燕。","九二：鸣鹤在阴，其子和之，我有好爵，吾与尔靡之。","六三：得敌，或鼓或罢，或泣或歌。","六四：月几望，马匹亡，无咎。","九五：有孚挛如，无咎。","上九：翰音登于天，贞凶。"]},
+          {id:62,name:"小过",alias:"雷山小过",gua:[0,0,1,1,0,0],description:"亨，利贞，可小事，不可大事，飞鸟遗之音，不宜上，宜下，大吉",overall:"小过卦象征小有超越，稍有过度，略微过头。",details:"小过卦由震（雷）上艮（山）下组成。雷声过山，小有超越。此卦表示小有超越，稍有过度，略微过头。适合小事谨慎，量力而行，但需适可而止，不可贪大求全。",lines:["初六：飞鸟以凶。","六二：过其祖，遇其妣，不及其君，遇其臣，无咎。","九三：弗过防之，从或戕之，凶。","九四：无咎，弗过遇之，往厉必戒，勿用永贞。","六五：密云不雨，自我西郊，公弋取彼在穴。","上六：弗遇过之，飞鸟离之，凶，是谓灾眚。"]},
+          {id:63,name:"既济",alias:"水火既济",gua:[1,0,1,0,1,0],description:"亨，小利贞，初吉终乱",overall:"既济卦象征已经成功，大功告成，功德圆满。",details:"既济卦由坎（水）上离（火）下组成。水火相济，阴阳调和。此卦表示已经成功，大功告成，功德圆满。适合善始善终，圆满收功，但需防微杜渐，警惕末后。",lines:["初九：曳其轮，濡其尾，无咎。","六二：妇丧其茀，勿逐，七日得。","九三：高宗伐鬼方，三年克之，小人勿用。","六四：繻有衣袽，终日戒。","九五：东邻杀牛，不如西邻之禴祭，实受其福。","上六：濡其首，厉。"]},
+          {id:64,name:"未济",alias:"火水未济",gua:[0,1,0,1,0,1],description:"亨，小狐汔济，濡其尾，无攸利",overall:"未济卦象征尚未成功，功亏一篑，尚未完成。",details:"未济卦由离（火）上坎（水）下组成。火在水上，阴阳未济。此卦表示尚未成功，功亏一篑，尚未完成。处于此时应当谨慎行事，坚持不懈，但需量力而行，不可冒进。",lines:["初六：濡其尾，吝。","九二：曳其轮，贞吉。","六三：未济，征凶，利涉大川。","九四：贞吉，悔亡，震用伐鬼方，三年有赏于大国。","六五：贞吉，无悔，君子之光，有孚，吉。","上九：有孚于饮酒，无咎，濡其首，有孚失是。"]},
+        ];
+        const getHexagram = (upper, lower) => hexagrams.find(h => h.alias === `${bagua.names[upper-1]}为${bagua.names[lower-1]}` || h.alias === `${bagua.names[upper-1]}${bagua.names[lower-1]}`);
+        
+        // Improved search function for hexagram lookup
+        const findHexagramByTrigrams = (upper, lower) => {
+            const alias1 = `${bagua.names[upper-1]}为${bagua.names[lower-1]}`;
+            const alias2 = `${bagua.names[upper-1]}${bagua.names[lower-1]}`;
+            
+            // 扩展别名映射表，包含更多卦象
+            const aliasMap = { 
+                '乾乾': '乾为天', '坤坤': '坤为地', '水雷':'水雷屯', '山水':'山水蒙',
+                '水天':'水天需', '天水':'天水讼', '地水':'地水师', '水地':'水地比',
+                '风天':'风天小畜', '天泽':'天泽履', '地天':'地天泰', '天地':'天地否',
+                '天火':'天火同人', '火天':'火天大有', '地山':'地山谦', '雷地':'雷地豫',
+                '泽雷':'泽雷随', '山风':'山风蛊', '地泽':'地泽临', '风地':'风地观',
+                '火雷':'火雷噬嗑', '山火':'山火贲', '山地':'山地剥', '地雷':'地雷复',
+                '天雷':'天雷无妄', '山天':'山天大畜', '山雷':'山雷颐', '泽风':'泽风大过',
+                '水山':'水山蹇', '雷水':'雷水解', '山泽':'山泽损', '风山':'风山渐',
+                '雷天':'雷天大壮', '火地':'火地晋', '地火':'地火明夷', '风火':'风火家人',
+                '水泽':'水泽节', '泽水':'泽水困', '山水':'山水蹇', '水风':'水风井',
+                '泽火':'泽火革', '火风':'火风鼎', '雷风':'雷风恒', '风雷':'风雷益',
+                '泽天':'泽天夬', '天风':'天风姤', '泽地':'泽地萃', '地风':'地风升',
+                '泽山':'泽山咸', '雷泽':'雷泽归妹', '天山':'天山遁', '山天':'山天大畜',
+                '火山':'火山旅', '风山':'风山渐', '水火':'水火既济', '火水':'火水未济'
+            };
+            
+            const searchKey = `${bagua.names[upper-1]}${bagua.names[lower-1]}`;
+            
+            // 首先尝试通过别名映射查找
+            let found = hexagrams.find(h => h.alias === aliasMap[searchKey]);
+            if(found) return found;
+            
+            // 如果别名映射未找到，尝试直接通过别名查找
+            found = hexagrams.find(h => h.alias === alias1 || h.alias === alias2);
+            if(found) return found;
+            
+            // 如果仍未找到，根据卦象的上下卦构成查找
+            // 这里需要根据八卦的编码来构建完整的六爻
+            const upperCode = bagua.codes ? bagua.codes[upper-1] : [upper > 4 ? 0 : 1, upper % 4 > 2 ? 0 : 1, upper % 2 === 0 ? 0 : 1];
+            const lowerCode = bagua.codes ? bagua.codes[lower-1] : [lower > 4 ? 0 : 1, lower % 4 > 2 ? 0 : 1, lower % 2 === 0 ? 0 : 1];
+            const fullCode = [...lowerCode, ...upperCode];
+            
+            found = hexagrams.find(h => arraysEqual(h.gua, fullCode));
+            if(found) return found;
+            
+            // 最后的后备方案，返回一个随机卦象而不是总是乾卦
+            console.log(`未找到匹配的卦象: 上卦=${bagua.names[upper-1]}, 下卦=${bagua.names[lower-1]}`);
+            return hexagrams[Math.floor(Math.random() * hexagrams.length)];
+        }
+
+        // --- STATE & DOM ---
+        let currentMethod = 'time';
+        let apiKey = localStorage.getItem('deepseek_api_key') || '';
+        const dom = {
+            inputSection: document.getElementById('input-section'),
+            resultSection: document.getElementById('result-section'),
+            tabButtons: document.querySelectorAll('.tab-button'),
+            methodContents: {
+                time: document.getElementById('method-time-content'),
+                number: document.getElementById('method-number-content'),
+                text: document.getElementById('method-text-content'),
+            },
+            castButton: document.getElementById('cast-button'),
+            newDivinationButton: document.getElementById('new-divination'),
+            historyButton: document.getElementById('history-button'),
+            // modals
+            historyModal: document.getElementById('history-modal'),
+            historyDetailModal: document.getElementById('history-detail-modal'),
+            historyList: document.getElementById('history-list'),
+            historyDetailContent: document.getElementById('history-detail-content'),
+            clearHistoryButton: document.getElementById('clear-history-button'),
+            closeModalButtons: document.querySelectorAll('.close-modal-button'),
+        };
+
+        // --- FUNCTIONS ---
+        
+        const switchMethod = (method) => {
+            currentMethod = method;
+            dom.tabButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.method === method);
+            });
+            Object.values(dom.methodContents).forEach(el => el.classList.add('hidden'));
+            dom.methodContents[method].classList.remove('hidden');
+        };
+
+        const getPlumHexagram = () => {
+            let num1, num2;
+            const now = new Date();
+            // Using Chinese zodiac years for demonstration (simplified)
+            const yearNum = (now.getFullYear() - 4) % 12 + 1;
+
+            switch (currentMethod) {
+                case 'time':
+                    num1 = yearNum + now.getMonth() + 1 + now.getDate();
+                    num2 = num1 + now.getHours();
+                    break;
+                case 'number':
+                    num1 = parseInt(document.getElementById('num1').value) || 0;
+                    num2 = parseInt(document.getElementById('num2').value) || 0;
+                    if (num1 === 0 || num2 === 0) {
+                        alert('请输入有效的数字。');
+                        return null;
+                    }
+                    break;
+                case 'text':
+                    const text = document.getElementById('text-input').value.trim();
+                    if (text.length === 0) {
+                        alert('请输入汉字。');
+                        return null;
+                    }
+                    if (text.length === 1) {
+                         alert('请输入两个或以上汉字。'); // Simplified for this example
+                         return null;
+                    }
+                    const mid = Math.floor(text.length / 2);
+                    num1 = text.substring(0, mid).length;
+                    num2 = text.substring(mid).length;
+                    break;
+            }
+
+            const upper = num1 % 8 || 8;
+            const lower = num2 % 8 || 8;
+            const changingLine = (num1 + num2) % 6 || 6;
+            
+            const original = findHexagramByTrigrams(upper, lower);
+            const originalGua = original.gua.slice().reverse(); // bottom to top
+
+            // 计算互卦：取原卦的第2、3、4爻为互卦的下卦，取原卦的第3、4、5爻为互卦的上卦
+            const mutualLowerGua = [originalGua[1], originalGua[2], originalGua[3]];
+            const mutualUpperGua = [originalGua[2], originalGua[3], originalGua[4]];
+            
+            // 根据八卦编码找到对应的卦序号
+            const findTrigramIndex = (trigram) => {
+                if (bagua.codes) {
+                    for (let i = 0; i < bagua.codes.length; i++) {
+                        if (arraysEqual(bagua.codes[i], trigram)) {
+                            return i + 1;
+                        }
+                    }
+                    return 1; // 默认返回乾卦
+                } else {
+                    // 如果没有bagua.codes，使用简化算法
+                    const value = trigram[0] * 4 + trigram[1] * 2 + trigram[2] * 1;
+                    const mapping = [8, 7, 5, 4, 3, 2, 6, 1]; // 0-7对应到八卦序号
+                    return mapping[value];
+                }
+            };
+            
+            const mutualLowerIndex = findTrigramIndex(mutualLowerGua);
+            const mutualUpperIndex = findTrigramIndex(mutualUpperGua);
+            
+            // 使用上下卦序号查找互卦
+            const mutual = findHexagramByTrigrams(mutualUpperIndex, mutualLowerIndex);
+
+            const changingGua = originalGua.slice();
+            changingGua[changingLine - 1] = 1 - changingGua[changingLine - 1]; // Flip the line
+            const findHexagramByGua = (gua) => hexagrams.find(h => arraysEqual(h.gua, gua.slice().reverse()));
+            const changing = findHexagramByGua(changingGua) || original;
+
+            return { original, mutual, changing, changingLine };
+        };
+        
+        const arraysEqual = (a, b) => a.length === b.length && a.every((val, index) => val === b[index]);
+
+        const renderHexagram = (elementId, hexagram, changingLine = -1) => {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+            hexagram.gua.slice().reverse().forEach((yaoValue, index) => {
+                const yaoElement = document.createElement('div');
+                let classes = ['yao', 'h-4', 'w-full', 'rounded-sm', 'relative'];
+                classes.push(yaoValue === 1 ? 'bg-yellow-700' : 'bg-gray-700 yin');
+                if (index === changingLine - 1) {
+                    classes.push('changing');
+                }
+                yaoElement.className = classes.join(' ');
+                container.appendChild(yaoElement);
+            });
+            document.getElementById(`${elementId.replace('-image', '')}-name`).textContent = `${hexagram.name} (${hexagram.alias})`;
+        };
+
+        const castHexagram = () => {
+            const result = getPlumHexagram();
+            if (!result) return;
+
+            dom.inputSection.classList.add('hidden');
+            dom.resultSection.classList.remove('hidden');
+
+            renderHexagram('hexagram-original-image', result.original, result.changingLine);
+            renderHexagram('hexagram-mutual-image', result.mutual);
+            renderHexagram('hexagram-changing-image', result.changing);
+            
+            renderResultTabs(result);
+            saveToHistory(result);
+        };
+        
+        const renderResultTabs = (result) => {
+            const tabsContainer = document.getElementById('result-tabs-container');
+            const tabContent = document.getElementById('result-tab-content');
+            tabsContainer.innerHTML = '';
+            tabContent.innerHTML = '';
+
+            const tabs = [
+                { id: 'judgment', title: '断辞' },
+                { id: 'xiang', title: '象传' },
+                { id: 'ai', title: 'AI解卦' },
+            ];
+            
+            tabs.forEach((tab, index) => {
+                const button = document.createElement('a');
+                button.href = '#';
+                button.dataset.tab = tab.id;
+                button.className = `tab-button whitespace-nowrap py-3 px-4 border-b-2 font-medium text-sm ${index === 0 ? 'border-yellow-700 text-yellow-800' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`;
+                button.textContent = tab.title;
+                tabsContainer.appendChild(button);
+
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    tabsContainer.querySelectorAll('.tab-button').forEach(btn => {
+                        btn.className = btn.className.replace('border-yellow-700 text-yellow-800', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300');
+                    });
+                    button.className = button.className.replace('border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'border-yellow-700 text-yellow-800');
+
+                    tabContent.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.classList.add('hidden');
+                    });
+                    document.getElementById(`pane-${tab.id}`).classList.remove('hidden');
+                });
+            });
+
+            const createPane = (id) => {
+                const pane = document.createElement('div');
+                pane.id = `pane-${id}`;
+                pane.className = 'tab-pane hidden';
+                tabContent.appendChild(pane);
+                return pane;
+            };
+
+            const judgmentPane = createPane('judgment');
+            judgmentPane.classList.remove('hidden'); // Show the first pane by default
+            judgmentPane.innerHTML = `
+                <h3>本卦：${result.original.name}</h3><p>${result.original.description}</p>
+                <h3>变卦：${result.changing.name}</h3><p>${result.changing.description}</p>
+                <h3>动爻：第 ${result.changingLine} 爻</h3><p>${result.original.lines[result.changingLine - 1]}</p>
+            `;
+            
+            const xiangPane = createPane('xiang');
+            xiangPane.innerHTML = `<h3>本卦象曰：</h3><p>${result.original.overall}</p><h3>变卦象曰：</h3><p>${result.changing.overall || '无'}</p>`;
+
+            const aiPane = createPane('ai');
+            aiPane.innerHTML = `
+                <div class="p-4 border border-blue-200 bg-blue-50 rounded-lg not-prose">
+                     <p class="text-sm text-blue-800 mb-3">请输入您的 DeepSeek API Key 以启用AI解卦。密钥将仅保存在您的浏览器本地。</p>
+                     <div class="flex items-center gap-2">
+                         <input type="password" id="api-key-input" placeholder="sk-..." class="flex-grow px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                         <button id="save-api-key" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">保存</button>
+                     </div>
+                 </div>
+                 <div id="ai-result-content" class="mt-4 p-4 border rounded-lg bg-slate-50 min-h-[100px]">
+                    <div id="ai-loading" class="hidden text-center"><div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div><p>生成中...</p></div>
+                    <div id="ai-text-result" class="whitespace-pre-wrap"></div>
+                 </div>
+                 <button id="ai-interpret-button" class="mt-4 w-full px-6 py-3 bg-gray-800 text-white font-bold rounded-lg shadow-md hover:bg-black transition disabled:bg-gray-400 disabled:cursor-wait">获取AI解卦</button>
+            `;
+            
+            document.getElementById('api-key-input').value = apiKey;
+            document.getElementById('save-api-key').addEventListener('click', () => {
+                apiKey = document.getElementById('api-key-input').value.trim();
+                localStorage.setItem('deepseek_api_key', apiKey);
+                alert('API Key已保存!');
+            });
+            document.getElementById('ai-interpret-button').addEventListener('click', () => getAIInterpretation(result));
+
+            // Activate first tab
+            tabsContainer.firstChild.click();
+        };
+        
+        const getAIInterpretation = async (result) => {
+            if (!apiKey) { alert('请先输入并保存您的DeepSeek API Key。'); return; }
+            
+            const button = document.getElementById('ai-interpret-button');
+            const loading = document.getElementById('ai-loading');
+            const resultDiv = document.getElementById('ai-text-result');
+            
+            button.disabled = true;
+            loading.classList.remove('hidden');
+            resultDiv.innerHTML = '';
+
+            const prompt = `
+            请作为一位精通梅花易数的周易大师，为我解卦。
+            我的问题是：“${document.getElementById('question').value || '未提供具体问题'}”
+            
+            我得到的卦象如下：
+            - 本卦: ${result.original.name} (${result.original.alias})
+            - 互卦: ${result.mutual.name} (${result.mutual.alias}) - 代表事情发展的过程
+            - 变卦: ${result.changing.name} (${result.changing.alias}) - 代表事情的最终结果
+            - 动爻在第 ${result.changingLine} 爻，爻辞为：“${result.original.lines[result.changingLine-1]}”
+            
+            请综合体用关系和以上信息，用现代人易于理解的语言，为我提供详尽分析，包括：
+            1.  **直断**：直接回答我的问题，目前情况如何？吉凶如何？
+            2.  **过程分析**：结合互卦，分析事情会如何发展？中间会遇到什么？
+            3.  **结果预测**：结合变卦，分析最终的结果和走向。
+            4.  **行动建议**：我应该注意什么？怎么做才能趋吉避凶？
+            `;
+            
+            try {
+                const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+                    body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: prompt }] })
+                });
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                const data = await response.json();
+                const aiText = data.choices[0].message.content;
+                resultDiv.textContent = aiText;
+                // Update history with AI result
+                updateHistoryWithAI(result.id, aiText);
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-red-600">AI解卦失败: ${error.message}</p>`;
+            } finally {
+                button.disabled = false;
+                loading.classList.add('hidden');
+            }
+        };
+
+        // --- History Logic ---
+        const getHistory = () => JSON.parse(localStorage.getItem('plumHistory') || '[]');
+        const saveHistory = (history) => localStorage.setItem('plumHistory', JSON.stringify(history));
+        
+        const saveToHistory = (result) => {
+            const history = getHistory();
+            const entry = {
+                id: Date.now(),
+                date: new Date().toLocaleString('zh-CN'),
+                question: document.getElementById('question').value || '未记录问题',
+                result: {
+                    original: { name: result.original.name, alias: result.original.alias },
+                    mutual: { name: result.mutual.name, alias: result.mutual.alias },
+                    changing: { name: result.changing.name, alias: result.changing.alias },
+                    changingLine: result.changingLine,
+                },
+                aiInterpretation: null // Initially null
+            };
+            result.id = entry.id; // Add ID to result for later update
+            history.unshift(entry);
+            saveHistory(history.slice(0, 50));
+        };
+
+        const updateHistoryWithAI = (id, aiText) => {
+            const history = getHistory();
+            const entry = history.find(e => e.id === id);
+            if (entry) {
+                entry.aiInterpretation = aiText;
+                saveHistory(history);
+            }
+        };
+
+        const loadHistoryList = () => {
+            const history = getHistory();
+            dom.clearHistoryButton.disabled = history.length === 0;
+            if (history.length === 0) {
+                dom.historyList.innerHTML = `<p class="text-center text-gray-500">暂无历史记录。</p>`;
+                return;
+            }
+            dom.historyList.innerHTML = history.map(entry => `
+                <div class="p-4 border-b border-gray-100">
+                    <p class="font-semibold text-gray-800">${entry.question}</p>
+                    <p class="text-sm text-gray-500 mb-2">${entry.date}</p>
+                    <div class="flex items-center justify-between">
+                         <span class="text-sm">本卦: <strong>${entry.result.original.name}</strong> → 变卦: <strong>${entry.result.changing.name}</strong></span>
+                         <button data-id="${entry.id}" class="view-detail-button text-sm text-yellow-800 hover:underline">查看详情</button>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll('.view-detail-button').forEach(btn => {
+                btn.addEventListener('click', (e) => showHistoryDetail(e.target.dataset.id));
+            });
+        };
+
+        const showHistoryDetail = (id) => {
+            const history = getHistory();
+            const entry = history.find(e => e.id == id);
+            if(!entry) return;
+            
+            dom.historyDetailContent.innerHTML = `
+                <h3>问题：${entry.question}</h3>
+                <p><strong>时间：</strong>${entry.date}</p>
+                <p>
+                    <strong>卦象：</strong>
+                    本卦 ${entry.result.original.name} → 
+                    变卦 ${entry.result.changing.name}
+                    (第 ${entry.result.changingLine} 爻动)
+                </p>
+                <hr class="my-4">
+                <h3>AI 解卦详情：</h3>
+                ${entry.aiInterpretation ? `<div class="whitespace-pre-wrap">${entry.aiInterpretation}</div>` : '<p class="text-gray-500">此记录无AI解卦内容。</p>'}
+            `;
+            toggleModal('history-detail-modal', true);
+        }
+
+        const toggleModal = (modalId, show) => {
+            const modal = document.getElementById(modalId);
+            if (show) {
+                modal.classList.remove('invisible', 'opacity-0');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+                if (modalId === 'history-modal') loadHistoryList();
+            } else {
+                modal.classList.add('opacity-0');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+                setTimeout(() => modal.classList.add('invisible'), 300);
+            }
+        };
+
+        // --- EVENT LISTENERS ---
+        dom.tabButtons.forEach(btn => btn.addEventListener('click', () => switchMethod(btn.dataset.method)));
+        dom.castButton.addEventListener('click', castHexagram);
+        dom.newDivinationButton.addEventListener('click', () => location.reload());
+        dom.historyButton.addEventListener('click', () => toggleModal('history-modal', true));
+        dom.closeModalButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleModal('history-modal', false);
+                toggleModal('history-detail-modal', false);
+            });
+        });
+        dom.clearHistoryButton.addEventListener('click', () => {
+            if (confirm('确定要清空所有历史记录吗？此操作无法撤销。')) {
+                localStorage.removeItem('plumHistory');
+                loadHistoryList();
+            }
+        });
+        
+    </script>
+</body>
+</html>
