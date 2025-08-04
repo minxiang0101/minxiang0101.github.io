@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="基于Vue3的在线周易八卦卜卦和解卦系统，提供易经六十四卦查询、卦象解读和梅花易数">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="mask-icon" href="/mask-icon.svg" color="#000000">
+    
+    <!-- PWA相关 -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    
+    <!-- 预连接 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="data:text/javascript;base64,Ly8g5L2/55SoaW1wb3J0KCnliqjmgIHlr7zlhaVDU1Pku6XkvJjljJbpppblsY/liqDovb0KLy8g5qC45b+DQ1NT56uL5Y2z5Yqg6L29CmltcG9ydCAnLi9hc3NldHMvbWFpbi5jc3MnCmltcG9ydCAndmFudC9saWIvaW5kZXguY3NzJzsKaW1wb3J0ICcuL2Fzc2V0cy90cmFuc2l0aW9ucy5jc3MnOyAvLyDot6/nlLHov4fmuKHliqjnlLtDU1PpnIDopoHnq4vljbPliqDovb0KCi8vIOmdnuWFs+mUrkNTU+W7tui/n+WKoOi9vQpjb25zdCBsb2FkTm9uQ3JpdGljYWxDU1MgPSAoKSA9PiB7CiAgaW1wb3J0KCcuL2Fzc2V0cy90aGVtZS1pbmsuY3NzJyk7CiAgaW1wb3J0KCcuL2Fzc2V0cy92YW50LW92ZXJyaWRlLmNzcycpOwogIGltcG9ydCgnLi9hc3NldHMvaGV4YWdyYW0tc3R5bGVzLmNzcycpOwogIGltcG9ydCgnLi9hc3NldHMvYW5pbWF0aW9ucy5jc3MnKTsKfTsKCmltcG9ydCB7IGNyZWF0ZUFwcCB9IGZyb20gJ3Z1ZScKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC52dWUnCgovLyDlr7zlhaXot6/nlLHphY3nva4KaW1wb3J0IHJvdXRlciBmcm9tICcuL3JvdXRlcicKCi8vIOWvvOWFpemUmeivr+WkhOeQhuaPkuS7tgppbXBvcnQgeyBlcnJvckhhbmRsZXJQbHVnaW4gfSBmcm9tICcuL3BsdWdpbnMvZXJyb3JIYW5kbGVyJwppbXBvcnQgeyBheGlvc0ludGVyY2VwdG9yUGx1Z2luIH0gZnJvbSAnLi9wbHVnaW5zL2F4aW9zSW50ZXJjZXB0b3InCgovLyDlr7zlhaVWYW505LyY5YyW5o+S5Lu2CmltcG9ydCB7IHZhbnRPcHRpbWl6ZXJQbHVnaW4gfSBmcm9tICcuL3BsdWdpbnMvdmFudE9wdGltaXplcicKCi8vIOWvvOWFpeinpuaRuOWPjemmiOaMh+S7pAppbXBvcnQgeyB0b3VjaEZlZWRiYWNrIH0gZnJvbSAnLi9kaXJlY3RpdmVzL3RvdWNoRmVlZGJhY2snCgovLyDlr7zlhaVWYW506Kem5pG45qih5ouf5Zmo77yI55So5LqO5qGM6Z2i56uv5rWL6K+V77yJCi8vIOS7heWcqOW8gOWPkeeOr+Wig+WKoOi9vQppZiAoaW1wb3J0Lm1ldGEuZW52LkRFVikgewogIGltcG9ydCgnQHZhbnQvdG91Y2gtZW11bGF0b3InKTsKfQoKLy8g5a+85YWl5qC45b+DVmFudOe7hOS7tu+8iOW4uOeUqOe7hOS7tuebtOaOpeWvvOWFpe+8jOWFtuS7lue7hOS7tuaMiemcgOWKoOi9ve+8iQppbXBvcnQgewogIFRhYmJhciwKICBUYWJiYXJJdGVtLAogIE5hdkJhciwKICBCdXR0b24sCiAgTG9hZGluZywKICBUb2FzdCwKICBEaWFsb2csCiAgTm90aWZ5LAogIENlbGwsCiAgQ2VsbEdyb3VwLAogIFN0ZXAsCiAgU3RlcHMsCiAgQ2FyZCwKICBGaWVsZCwKICBSYWRpb0dyb3VwLAogIFJhZGlvLAogIENoZWNrYm94LAogIENoZWNrYm94R3JvdXAsCiAgU3dpdGNoLAogIFBpY2tlciwKICBBcmVhLAogIFBvcHVwLAogIEltYWdlIGFzIFZhbkltYWdlLAogIExhenlsb2FkLAogIEZvcm0sCiAgQ2FsZW5kYXIsCiAgT3ZlcmxheSwKICBUYWIsCiAgVGFicywKICBFbXB0eSwKICBDb2xsYXBzZSwKICBDb2xsYXBzZUl0ZW0sCiAgU2hhcmVTaGVldCwKICBOb3RpY2VCYXIsCiAgRHJvcGRvd25NZW51LCAKICBEcm9wZG93bkl0ZW0sCiAgU3dpcGVDZWxsLAogIFB1bGxSZWZyZXNoCn0gZnJvbSAndmFudCcKCi8vIOWIm+W7ulZ1ZeW6lOeUqOWunuS+iwpjb25zdCBhcHAgPSBjcmVhdGVBcHAoQXBwKQoKLy8g5rOo5YaM6Lev55SxCmFwcC51c2Uocm91dGVyKQoKLy8g5rOo5YaM6ZSZ6K+v5aSE55CG5o+S5Lu2CmFwcC51c2UoZXJyb3JIYW5kbGVyUGx1Z2luKQphcHAudXNlKGF4aW9zSW50ZXJjZXB0b3JQbHVnaW4pCgovLyDms6jlhoxWYW505LyY5YyW5o+S5Lu2CmFwcC51c2UodmFudE9wdGltaXplclBsdWdpbikKCi8vIOazqOWGjOaguOW/g1ZhbnTnu4Tku7YKY29uc3QgY29yZUNvbXBvbmVudHMgPSBbCiAgVGFiYmFyLAogIFRhYmJhckl0ZW0sCiAgTmF2QmFyLAogIEJ1dHRvbiwKICBMb2FkaW5nLAogIFRvYXN0LAogIERpYWxvZywKICBOb3RpZnksCiAgQ2VsbCwKICBDZWxsR3JvdXAsCiAgU3RlcCwKICBTdGVwcywKICBDYXJkLAogIEZpZWxkLAogIFJhZGlvR3JvdXAsCiAgUmFkaW8sCiAgQ2hlY2tib3gsCiAgQ2hlY2tib3hHcm91cCwKICBTd2l0Y2gsCiAgUGlja2VyLAogIEFyZWEsCiAgUG9wdXAsCiAgVmFuSW1hZ2UsCiAgTGF6eWxvYWQsCiAgRm9ybSwKICBDYWxlbmRhciwKICBPdmVybGF5LAogIFRhYiwKICBUYWJzLAogIEVtcHR5LAogIENvbGxhcHNlLAogIENvbGxhcHNlSXRlbSwKICBTaGFyZVNoZWV0LAogIE5vdGljZUJhciwKICBEcm9wZG93bk1lbnUsIAogIERyb3Bkb3duSXRlbSwKICBTd2lwZUNlbGwsCiAgUHVsbFJlZnJlc2ggCl0KCmNvcmVDb21wb25lbnRzLmZvckVhY2goY29tcG9uZW50ID0+IGFwcC51c2UoY29tcG9uZW50KSkKCi8vIOazqOWGjOWFqOWxgOaMh+S7pAphcHAuZGlyZWN0aXZlKCd0b3VjaC1mZWVkYmFjaycsIHRvdWNoRmVlZGJhY2spCgovLyDmgKfog73nm5HmjqcKaWYgKGltcG9ydC5tZXRhLmVudi5QUk9EKSB7CiAgLy8g5LuF5Zyo55Sf5Lqn546v5aKD5Lit55uR5o6n5oCn6IO9CiAgY29uc3QgcmVwb3J0V2ViVml0YWxzID0gKHsgbmFtZSwgZGVsdGEsIGlkIH0pID0+IHsKICAgIC8vIOWPr+S7peWwhuaAp+iDveaMh+agh+WPkemAgeWIsOWIhuaekOacjeWKoQogICAgY29uc29sZS5sb2coYFBlcmZvcm1hbmNlOiAke25hbWV9IC0gJHtkZWx0YX1tcyAoSUQ6ICR7aWR9KWApOwogIH07CgogIC8vIOebkeWQrOi3r+eUseWPmOWMluS7pea1i+mHj+mhtemdouaAp+iDvQogIHJvdXRlci5iZWZvcmVFYWNoKCh0bywgZnJvbSwgbmV4dCkgPT4gewogICAgaWYgKHdpbmRvdy5wZXJmb3JtYW5jZSAmJiB3aW5kb3cucGVyZm9ybWFuY2UubWFyaykgewogICAgICB3aW5kb3cucGVyZm9ybWFuY2UubWFyayhgcm91dGUtY2hhbmdlLXN0YXJ0LSR7dG8ucGF0aH1gKTsKICAgIH0KICAgIG5leHQoKTsKICB9KTsKCiAgcm91dGVyLmFmdGVyRWFjaCgodG8pID0+IHsKICAgIGlmICh3aW5kb3cucGVyZm9ybWFuY2UgJiYgd2luZG93LnBlcmZvcm1hbmNlLm1hcmspIHsKICAgICAgd2luZG93LnBlcmZvcm1hbmNlLm1hcmsoYHJvdXRlLWNoYW5nZS1lbmQtJHt0by5wYXRofWApOwogICAgICB3aW5kb3cucGVyZm9ybWFuY2UubWVhc3VyZSgKICAgICAgICBgcm91dGUtY2hhbmdlLSR7dG8ucGF0aH1gLAogICAgICAgIGByb3V0ZS1jaGFuZ2Utc3RhcnQtJHt0by5wYXRofWAsCiAgICAgICAgYHJvdXRlLWNoYW5nZS1lbmQtJHt0by5wYXRofWAKICAgICAgKTsKCiAgICAgIGNvbnN0IGVudHJpZXMgPSB3aW5kb3cucGVyZm9ybWFuY2UuZ2V0RW50cmllc0J5TmFtZShgcm91dGUtY2hhbmdlLSR7dG8ucGF0aH1gKTsKICAgICAgaWYgKGVudHJpZXMubGVuZ3RoKSB7CiAgICAgICAgcmVwb3J0V2ViVml0YWxzKHsKICAgICAgICAgIG5hbWU6ICdyb3V0ZS1jaGFuZ2UnLAogICAgICAgICAgZGVsdGE6IGVudHJpZXNbMF0uZHVyYXRpb24sCiAgICAgICAgICBpZDogdG8ucGF0aAogICAgICAgIH0pOwogICAgICB9CiAgICB9CiAgfSk7Cn0KCi8vIOazqOWGjFBXQeebuOWFs+S6i+S7tuWkhOeQhgppZiAoJ3NlcnZpY2VXb3JrZXInIGluIG5hdmlnYXRvciAmJiBpbXBvcnQubWV0YS5lbnYuUFJPRCkgewogIHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdsb2FkJywgKCkgPT4gewogICAgbmF2aWdhdG9yLnNlcnZpY2VXb3JrZXIucmVnaXN0ZXIoJy9zdy5qcycpLnRoZW4ocmVnaXN0cmF0aW9uID0+IHsKICAgICAgY29uc29sZS5sb2coJ1NlcnZpY2VXb3JrZXIgcmVnaXN0cmF0aW9uIHN1Y2Nlc3NmdWwnKTsKICAgIH0pLmNhdGNoKGVycm9yID0+IHsKICAgICAgY29uc29sZS5lcnJvcignU2VydmljZVdvcmtlciByZWdpc3RyYXRpb24gZmFpbGVkOicsIGVycm9yKTsKICAgIH0pOwogIH0pOwp9CgovLyDmjILovb3lupTnlKgKYXBwLm1vdW50KCcjYXBwJyk7CgovLyDlupTnlKjmjILovb3lkI7liqDovb3pnZ7lhbPplK5DU1MKc2V0VGltZW91dChsb2FkTm9uQ3JpdGljYWxDU1MsIDEwMCk7Cg==" as="script" type="module">
+    
+    <!-- DNS预取 -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <title>周易八卦在线卜卦系统</title>
+    
+    <!-- 内联关键CSS -->
+    <style>
+      /* 关键渲染路径CSS */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+      
+      #app-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f5f5f5;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+      
+      .app-loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top-color: #000;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      .app-loading-text {
+        margin-top: 16px;
+        font-size: 16px;
+        color: #333;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/js/index-BThmZv48.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/vue-vendor-BDmscHTi.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vant-ui-B5UknOXi.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/axios-lib-7ZUa9Kmg.js">
+    <link rel="stylesheet" crossorigin href="/assets/css/index-Cvxy01rR.css">
+  </head>
+  <body>
+    <!-- 应用加载指示器 -->
+    <div id="app-loading">
+      <div class="app-loading-spinner"></div>
+      <div class="app-loading-text">加载中...</div>
+    </div>
+    
+    <div id="app"></div>
+    
+    <!-- 移除加载指示器的脚本 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // 监听Vue应用挂载完成事件
+        document.addEventListener('app-mounted', function() {
+          const loadingEl = document.getElementById('app-loading');
+          if (loadingEl) {
+            loadingEl.style.opacity = '0';
+            setTimeout(function() {
+              loadingEl.style.display = 'none';
+            }, 300);
+          }
+        });
+        
+        // 如果应用加载时间过长，自动隐藏加载指示器
+        setTimeout(function() {
+          const loadingEl = document.getElementById('app-loading');
+          if (loadingEl && loadingEl.style.display !== 'none') {
+            loadingEl.style.opacity = '0';
+            setTimeout(function() {
+              loadingEl.style.display = 'none';
+            }, 300);
+          }
+        }, 3000);
+      });
+    </script>
+    
+    
+    <!-- 通知应用已挂载 -->
+  </body>
+</html>
